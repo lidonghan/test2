@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="mode_ready">贪吃蛇\n 按&quot;向上&quot;键 ，游戏开始</string>
+  <string name="mode_pause">暂停\n按“向上”键返回游戏</string>
+  <string name="mode_lose_prefix">游戏结束 \n 分数: </string>
+  <string name="mode_lose_suffix">\n按“向上”键游戏开始</string>
+  <string name="snake_layout_text_text"> </string>
+  <string name="app_name">贪吃蛇</string>
+</resources>
