@@ -1,0 +1,35 @@
+双系统共用虚拟内存   
+
+　　虚拟内存的设置，不能不涉及到页面文件。所谓页面文件，它的功能是将一部分硬盘空间设置为虚拟内存，从而扩大了可用“内存”空间，以此来满足程序的运行要求。Win9x通常是利用安装目录中的Win386.swp这个交换文件来实现虚拟内存的创建，WinNT则是利用Pagefile.sys来实现这一功能的。既然它们都是功能一样的文件，为了方便和节约空间让其共享是可行的。
+
+　　相关的Windows系统非常简单，比如Win98和WinMe，WinNT和Win2000，WinNT和WinXP只要将它们的路径设置成相同的即可。具体方法为：依次点击“开始→设置→控制面板→系统→性能→虚拟内存”，选中“用户自己指定虚拟内存设置”，将“硬盘”路径指定为空间大的分区如“C:\2500MB可用”，并且将最大值和最小值设为相同即可。需要说明的是在第二个系统中设定时，最好删掉上一个系统的相同文件。
+
+　　不相关的Windows系统共享的前提条件是：首先需要保证有相同的文件系统(Win9x/Me不识别NTFS分区)，其次这两个文件的大小必须设定一致，也就是说它们的最大值和最小值必须相同，最后这两个文件的位置应在同一个分区的同一个目录下。
+
+　　我们可以有两种方法来共享虚拟内存文件：
+
+　　1.共享WinNT的Pagefile.sys 
+　　启动Win98/Me系统，单击“开始→运行”，键入“systm.ini”，在[386enh]下做如下修改："pagingDrive=c:\pagefile.sys" (位置由自己设定) 
+
+　　"minpaging file size=x"(如果虚拟内存为192MB，则x=192×1024=196608，推荐设为物理内存的2.5倍)
+
+　　接下来重新启动计算机，删掉“win386.swp”文件，不能删除表明设置失败。
+
+　　2.共享Win98/Me的win386.swp
+　　进入Win2000/XP，单击“开始→运行”，输入“regedit”，打开注册表，然后通过“查找”功能，查找关于“filepage.sys”的所有项，然后将所有的“filepage.sys”都更改为“win386.swp”。
+
+　　相关键为：
+
+　　[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\SessionManager\Memory Management]
+
+　　[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Control\BackupRestore\FilesNotToBackup]
+
+　　[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet002\Control\Session Manager\Memory Management]
+
+　　[HKEY_LOCAL_MACHINE\SYSTEM\ControlSet003\Control\BackupRestore\FilesNotToBackup]
+
+　　[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\BackupRestore\FilesNotToBackup]
+
+　　[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
+
+　　最后重新启动计算机，然后删掉“pagefile.sys”就可以了。

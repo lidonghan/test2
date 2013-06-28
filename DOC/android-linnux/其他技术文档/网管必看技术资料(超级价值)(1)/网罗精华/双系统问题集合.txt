@@ -1,0 +1,100 @@
+双系统问题集合
+
+    一、修复Windows 98/XP双系统启动菜单
+    1.修复前，在BIOS中设置从光驱启动。用Windows XP安装盘启动电脑，在加载必要的驱动后，出现Windows XP的安装界面。有三个选项：
+    (1)要现在开始安装Windows XP，请按“Enter”键。
+　　(2)要用“恢复控制台”修复Windows XP安装，按“R”键。
+　　(3)要退出安装程序，不安装Windows XP，按“F3”键；
+
+     2. 按“R”键，进入“Microsoft Windows XP (TM) 故障恢复控制台”界面；故障恢复控制台提供系统修复和故障恢复功能。系统这时会搜寻已安装的Windows XP系统文件，然后显示搜寻结果，并询问“要登录到哪个Windows XP安装（要取消，请按Enter）”，选择1. D:Windows，回车，系统会再询问“管理员密码”，再键入安装Windows XP时设置的管理员密码，回车，出现D:Windows〉，这时需要输入修复命令Fixboot，后面的参数为启动扇区要写入的磁盘盘符，这里填入C:，回车。修复完成，键入Exit退出。重启后就会看到久违的双重启动菜单了。并且，这样修复后基本不产生垃圾文件。
+
+    二、巧修WindowsXP 双启动菜单　
+     在Windows98下全新安装WindowsXP，会自动生成双启动菜单，相当方便。WindowsXP是极其稳定的操作系统，但因为双启动菜单的文件一般都在C盘根目录下，很易受损。虽然你可以备份与双启动有关的文件，还可以使用Ghost把C盘整个备份下来，或制作紧急修复软盘以便受损时恢复，但如果使用者粗心大意没做备份，又没有紧急修复软盘那怎么办？难道要重装WindowsXP？还有几十个大小软件？！其实我们还有最后一招：恢复控制台。 
+    开始时和重装一样，要选择全新安装，等安装文件复制好，电脑重新启动，选择进入恢复控制台，控制台会提示你要登录到哪个WindowsXP安装，一般就选默认的“1”，键入系统管理员密码，你就进入了控制台的Windows目录下，键入“BOOTCFG／ADD”，控制台会扫描Windows安装，几秒钟后扫描完成，提示选择要添加的安装，选“1”，接着提示输入加载识别符，可输入“MicrosoftWindowsXPProfessional”，提示输入OS加载选项，键入fastdetect，回车，键入“EXIT”，重新启动电脑，你可以看到熟悉的双启动菜单又回来了。进入系统后，把所有分区内带“＄”的文件及文件夹全删掉。
+
+    三、恢复WinMe\XP双系统引导菜单 
+　　同时体验两个Windows操作系统的魅力，采用Windows Me与Windows XP双重引导，是很多用户的选择。但是，由于种种原因，很多时候你可能要重装Windows Me。而这一重装不要紧，之后你会发现用于双引导的启动选择菜单不见了(这种情况见于在DOS下重装Windows 9x、特别是格式化C盘后的重装)！那么，Windows XP到底上哪儿去了呢？ 
+
+　　和平共处有顺序 
+
+　　一般而言，在安装双系统的时候，我们是先安装Windows Me，然后在另一个分区安装Windows XP。
+安装了Windows Me之后，C盘引导区储存的是Windows Me的引导信息，开机后系统通过加载系统文件Io.sys和Command.com来引导Windows Me。 
+　　安装Windows XP之后，C盘引导区被Windows XP的引导信息所覆盖，用来启动Windows Me的引导信息被移到引导区以外，储存在一个名为Bootsect.dos的文件中。 
+　　实现双引导后，系统通过加载Windows XP的系统文件Ntldr来读取Boot.ini，查找其他操作系统，并显示启动选择菜单，让用户确定启动哪个系统：如果选择启动Windows Me，则通过Bootsect.dos来加载Io.sys和Command.com系统文件来引导Windows Me；如果选择启动Windows XP，则直接加载Ntldr、通过Nntdetect.com系统文件来引导Windows XP。 
+
+　　不同分区是前提 
+
+　　而一旦再次安装Windows Me时，C盘的引导区再次变成Windows Me的引导信息，即使Ntldr和Boot.ini两个文件仍存在，开机时系统也不再加载它们，因此不会出现启动选择菜单；如果格式化了C盘，这两个文件将不复存在，就更不会出现启动选择菜单了。 
+　　其实，大多数用户的Windows Me与Windows XP并没有安装在同一个分区，虽经格式化C盘、重装Windows Me，变化的仅仅是C盘的引导区、选择引导不同系统的系统文件，以及C盘上的Windows Me的安装文件和设置信息。也就是说，保存在其他分区中的Windows XP安装文件、设置信息并没有被破坏，因此，无需费时费力地重新安装和设置Windows XP，只要恢复一下C盘的引导区和选择引导系统的系统文件，就可以快速恢复Windows Me与Windows XP的双重引导，找回原来的Windows XP！ 
+
+　　拨开迷雾见真谛 
+
+　　恢复Windows Me和Windows XP双重引导的方法是： 
+　　1、启动Windows Me后，执行Windows XP的安装程序。 
+　　2、按照正常的安装过程，在安装第一步“安装选项”中选择“全新安装(高级)”。 
+　　3、输入安装密码，跳过“升级驱动器”(不选“升级为NTFS文件系统”)和“下载更新的安装程序文件”两步。 
+　　4、系统开始复制安装文件，等绿色的复制进度条到头后，出现“重新启动计算机”的红色进度条，此时，迅速按下“Esc”键，禁止重新启动(成功禁止重新启动则直接进入第7步)。 
+　　5、如果没有及时按下“Esc”键而导致系统重新启动，将会出现启动选择菜单，其中包括三个启动选项(格式化C盘后重装，则只出现后两项)： 
+　　Microsoft Windows XP Professional 
+　　Microsoft Windows Millennium Edition 
+　　Microsoft Windows XP Professional安装程序 
+　　6、按小键盘区的方向键，在5秒钟内选择“Microsoft Windows Millennium Edition”启动Windows Me。 
+　　7、进入C盘即可看到，根目录上已经出现了实现双引导启动需要的五个文件：“Ntldr”、“Ntdetect.com”、“Boot.ini”、“Bootfont.bin”、“Bootsect.dos”。 
+　　此外还有Windows XP的三个安装文件“ldr”、“drvltr.~_~”、“txtse-tup.sif”和一个文件夹“win_nt.~bt”，其他分区也各有一个磁盘加速文件“DRVLTR.~_~”，直接删除即可。 
+　　8、修改Boot.ini文件。在[Boot Loader]段中：将“Default=C:＼WIN_NT.~BT＼BOOTSECT.DAT”一行改为“Default=C:＼”，如果不从启动选择菜单中进行选择，默认从C盘引导启动Windows Me；或改为“Default=multi(0)disk(0)rdisk(0)partition(2)＼WINDOWS”，使系统默认从D盘引导启动Windows XP(如果Windows XP安装在E盘，将“partition(2)”中的“2”改为“3”、以此类推)。 
+　　同时，还可在[Boot Loader]段中设定启动选择菜单维持的时间(以秒为单位)，将“Timeout=5”中的“5”改为你希望的时间即可。 
+　　在[Operating Systems]段中，删除“C:＼WIN_NT.~BT＼BOOTSECT.DAT="Microsoft Windows XP Professional安装程序"”一行，即可将Windows XP的安装选项从启动选择菜单中屏蔽掉。若是格式化C盘后重装Windows Me，还需加入“multi(0)disk(0)rdisk(0)partition(2)＼WINDOWS="Microsoft Windows XP Professional"/fastdetect”一行，使系统以快速启动的方式从D盘引导Windows XP。同时，还可以在[Operating Systems]段中修改启动选择菜单显示的文字，比如：将“Microsoft Windows XP Professional”改为“Windows XP中文版”、“Microsoft Windows Millennium Edition”改为“Windows Me千禧版”，之后，选择引导菜单上显示的就是“Windows XP中文版”和“Windows Me千禧版”了。 
+　　9、重新启动就恢复双重引导了，并且，Windows XP的全部设置百分之百保持原来的状态，与重装Windows Me前没有丝毫改变。
+
+    四、修复双系统启动菜单
+　  如果安装了了双操作系统的朋友就会知道，一般双系统都会是98/me加上2000/xp这样类型的操作系统，在安装操作系统的时候xp/2000会自动建立起一个双重系统启动菜单，双重系统的启动是因为在c盘的根目录下面含有这样几个文件：win.ini boot.ini bootfont.bin ntdetect.com ntldr io.sys msdos.sys 后面这两个是要在文件夹选项里面更改（隐藏受保护的系统文件）才能看到的。最好在其中的一个系统坏了以后先备份这几个文件，如果没有备份就先把c盘格式化了，并且安装好了98/me的话是不是感到没有办法了恢复了呢？这里介绍一种简单的方法：
+    先把xp/或者2000的安装光盘放入光驱，并且执行setup安装xp/2000，选择全新安装。安装程序就会继续安装，等待重启以后不要继续安装了，直接进入me/98，观察c盘根目录，多了几个文件夹，还有一些看不懂的文件。但是更改了文件夹选项里面的（隐藏受保护的系统文件）以后发现win.ini boot.ini bootfont.bin ntdetect.com ntldr io.sys msdos.sys都恢复了，那么你可以直接删除其他你看不懂的文件名很奇怪的文件夹了，因为那是为windows xp/2000安装准备的安装文件,然后打开并这样编辑boot.ini 
+
+    [boot loader]
+    timeout=10
+    default=multi(0)disk(0)rdisk(0)partition(2)\WINDOWS
+    [operating systems]
+    multi(0)disk(0)rdisk(0)partition(2)\WINDOWS="①: Windows XP/2000 " /fastdetect
+    C:\=②: Windows ME/98
+
+    然后重新系统启动就可以了 发现双启动菜单已经恢复了。
+
+    五、双操作系统共存常见问题解答 
+    双系统的安装顺序 
+
+　　问：我打算在一台电脑中安装多系统(Windows 9x/XP)，请问在安装的先后顺序上有什么讲究么？应该注意哪些地方？ 
+
+　　答：一般来说，安装顺序是先低级版本到高级版本的，也就是说首先安装Windows9x，然后在Windows9x系统下安装WindowsXP，这样做的好处是系统可以自动生成开机选择画面。
+
+　　要注意的有以下几点： 
+
+　　1、要把每个系统安装在不同的分区中。最好的安排是：把Windows 9x安装在C盘上，Windows XP安装在D盘上。
+
+　　2、针对不同的系统要选择不同的系统文件格式。对于Windows9x，要选择FAT16或FAT32的；而对于Windows XP，最好使用NTFS格式，这样系统潜力会发挥的更好。 
+
+　　3、在Windows9x上安装Windows XP时要选择“全新安装”，不要选择“升级安装”。
+
+　  高版本如何安装低版本
+
+　　问：我的系统是Windows XP，现在我想再安装一个Windows 98，请问如何在保留Windows XP的情况下安装Windows 98，做个双系统？
+
+　　答：因为Windows XP下不能直接安装Windows 98，所以必须首先用Windows 98启动盘启动电脑(当然前提是在CMOS中设置先从A盘启动)，然后把Windows98安装到WindowsXP以外的分区中。重启系统后，你会发现并没有双启动菜单，系统直接进入了Windows 98。不要紧，按照下一个问题的解答恢复即可。恢复完后把硬盘各分区中以“”字符打头并以“”结尾的文件删除就可以了。 　
+
+    恢复选择菜单 
+
+　　问：我安装的是Windows 98加Windows 2000操作系统，由于误操作把boot.ini文件删除了，现在启动电脑时就会出现“boot.ini非法”提示，也没有选择菜单了，而是直接进入了Windows 2000，请问该如何恢复？ 
+
+　　答：首先在BIOS中将启动顺序调整为CD-ROM引导，然后将Windows 2000安装盘放入光驱。等自动加载完安装程序后，系统会问你是重新安装还是修复，不用管它，直接退出。最后到CMOS中把启动顺序再改为硬盘启动，这样再次开机后就会出现选择菜单了。
+
+　  删除其中一个系统
+
+　　问：请问在双系统中(Windows9x和Windows XP)，如何在不损害一个系统的情况下删除另外一个系统？
+
+　　答：如果想删除Windows9x的话，可以在Windows XP中右键单击“我的电脑”，选择“属性→高级”，点击“启动和故障恢复”中的“设置”按钮，然后把启动时间改为“0”，这样在启动时就会直接进入Windows XP，而不会在出现选择菜单了。最后把Windows 9x的Windows、Program Files目录和引导文件(包括io.sys、msdos.sys、command.com、autoexec.bat和config.sys)删除即可。
+　　如果想删除Windows XP，首先在Windows 9x环境下把Windows XP所在的目录全部删除，然后用一张Windows 9x的启动盘(根据操作系统所定)启动，在“A:”下输入“SYS C:”，给Windows9x所在的C盘重新传系统即可。
+
+　   如何访问NTFS分区
+
+　　问：我的电脑是Windows 98、Windows 2000的双系统，Windows 2000所在的分区使用了NTFS文件格式，这样我在Windows 98下就不能访问它们了，请问如何在不转化为FAT格式的情况下访问它们呢？
+
+　　答：目前没有太好的办法，只能使用软件NTFS for Windows 98，它是专为Windows 9x系统访问NTFS分区而设计的，使用它可以在Windows 9x环境下对NTFS分区进行读写等操作。

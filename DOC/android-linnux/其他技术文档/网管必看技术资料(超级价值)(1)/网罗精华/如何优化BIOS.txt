@@ -1,0 +1,41 @@
+如何优化电脑系统的BIOS？
+ 
+ 
+ 
+ 
+( 2002年01月24日14:32:15 TT 阅读：74 )
+
+
+ 
+
+
+　　1、在Standard CMOS Setup里没有连接IDE设备的端口的TYPE和MODE设为None。
+
+　　2、将CPU Internal Cache、External Cache设为Enabled，打开CPU一二级缓存。
+
+　　3、将System Boot Up speed设为High。使系统引导速度为高速。
+
+
+　　4、将Boot Sequence设为C，A:。
+
+　　5、将Floopy Drive Seek At Boot设为Disable。使启动时不检测软驱。
+
+　　6、将Above 1MB Memory Test设为Disabled。启动时不检测1MB以上的内存。
+
+　　7、将Boot Up Floppy seek设为Disabled。这样做可以使启动时不对软驱进行寻道操作。
+
+　　8、将Video BIOS Shadow设为Enabled。使显卡上的BIOS映射到内存中，提高显示速度。
+
+　　9、将System BIOS Shadow设为Enabled。使系统BIOS映射内存中，改善性能。
+
+　　10、将Video BIOS Cacheable设为Enable。使显卡上的BIOS映射到高速缓存。
+
+　　11、将System BIOS Cacheable设为Enbaled。使主板的BIOS映射到高速缓存。
+
+　　12、将Cache Timing设为Fastset。
+
+　　13、将SDRAM CAS Latency Time设为3。设置SDRAM的延迟时间。如果你的内存质量不是很好，设成3会使死机情况大大减少。
+
+　　14、采用VIA Apollo Pro系列主板芯片的BIOS有一项“DRAM CLOCK”将其值改为HCLK+33，这样你的内存就会工作在系统外频+33的频率下了，如果你的CPU为Celeron，那系统的性能提高将是极为明显的，如果你的内存不争气，你可将“DRAM CLOCK”的值设为“HOST CLK(系统外频)或“HOST-33”。这是因为Apollo Pro系列芯片有独特的内存异步技术。
+ 
+ 

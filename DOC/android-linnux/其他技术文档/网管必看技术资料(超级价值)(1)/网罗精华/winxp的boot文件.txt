@@ -1,0 +1,7 @@
+xp的boot.ini文件内容
+
+[boot loader]
+timeout=3
+default=multi(0)disk(0)rdisk(0)partition(1)\WINDOWS
+[operating systems]
+multi(0)disk(0)rdisk(0)partition(1)\WINDOWS="Microsoft Windows XP Profession"

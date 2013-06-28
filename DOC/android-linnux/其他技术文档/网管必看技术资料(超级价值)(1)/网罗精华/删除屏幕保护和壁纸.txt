@@ -1,0 +1,4 @@
+删除屏幕保护和壁纸
+　　问：我使用的是Windows 98和Windows 2000双操作系统，里面有很多不满意的屏幕保护和壁纸。我想请教一下，用什么办法可以删除它们？
+
+　　答：Windows 98默认的屏幕保护都在C:\Windows下，文件后缀名是.scr，该目录下有一些壁纸，后缀名是.bmp。另外C:\Windows\Web\Wallpaper中也有部分壁纸。Windows 2000默认的屏幕保护都在C:\Winnt\System32\下，后缀名也是.scr。壁纸在C:\Winnt\Web\Wallpaper\和C:\Documents and Settings\账户名\My Documents\My Pictures\下。在这些路径下找到不满意的文件后即可删除。

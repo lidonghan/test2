@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Pro Git - Pro Git 4.8 服务器上的 Git Git 进程</title>
+    <link rel="stylesheet" href="images/master.css" type="text/css" media="screen" charset="utf-8"/>
+    <script src="/javascripts/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/javascripts/jquery.github.js" type="text/javascript" charset="utf-8"></script>
+    <link rel='alternate' type='application/rss+xml' href='http://feeds.feedburner.com/ProGitBook' />
+  </head>
+  <body>
+    <div id='wrapper'>
+      <div id='header'>
+        <h1>Pro Git</h1>
+        <h2>professional version control</h2>
+      </div>
+      <div id='menu'>
+        <ul>
+          <li><a href='/'>Home</a></li>
+          <li><a href='/book'>Book</a></li>
+          <li><a href='/blog.html'>Blog</a></li>
+          <li><a href='/about.html'>About</a></li>
+          <li><a href='/support.html'>Support Us</a></li>
+          <li><a href='http://github.com/progit' target='_blank' rel='me'>GitHub</a></li>
+          <li><a href='http://twitter.com/progitbook' target='_blank' rel='me'>Twitter</a></li>
+        </ul>
+      </div>
+      <div id="message">
+        This is an in-progress translation. <br/>
+        To help translate the book, please
+        fork the book <a href="http://github.com/progit/progit">at GitHub</a> and push your contributions.
+      </div>
+      <div id='content'>
+        <h2 id='git_'>Git 进程</h2>
+
+<p>公共，非授权的只读访问要求我们在 HTTP 协议的基础上使用 Git 协议。主因在于速度。Git 协议更为高效，进而比 HTTP 协议更迅速，所以它能节省很多时间。</p>
+
+<p>重申一下，这一点只适用于非授权、只读的访问。如果在防火墙之外的服务器上，该服务的使用应该局限于公诸于世的项目。假如是在防火墙之内，它也可以用于具有大量参与人员或者主机（长期整合资源或编译的服务器）的只读访问的项目，可以省去为逐一添加 SSH 公钥的麻烦。</p>
+
+<p>无论哪种情况，Git 协议的设定都相对简单。基本上，只要以长期守护进程的形式运行该命令：</p>
+
+<pre><code>git daemon --reuseaddr --base-path=/opt/git/ /opt/git/</code></pre>
+
+<p><code>--reuseaddr</code> 使得服务无须等到旧的连接尝试过期以后再重启，<code>--base-path</code> 选项使得克隆项目的时候不用给出完整的路径，而最后面的路径告诉 Git 进程导出仓库的位置。假如有防火墙，则需要为该主机的 9418 端口打个允许通信的洞。</p>
+
+<p>有几个不同的办法可以让该进程长期驻留，取决于不同的操作系统。在 Ubuntu 主机上，可以用 Upstart 脚本来完成。于是，在下面这个文件</p>
+
+<pre><code>/etc/event.d/local-git-daemon</code></pre>
+
+<p>加入该脚本内容：</p>
+
+<pre><code>start on startup
+stop on shutdown
+exec /usr/bin/git daemon \
+    --user=git --group=git \
+    --reuseaddr \
+    --base-path=/opt/git/ \
+    /opt/git/
+respawn</code></pre>
+
+<p>出于安全考虑，强烈建议用一个对仓库只有读取权限的用户身份来运行该进程——只需要简单的新创建一个 <code>git-ro</code> 用户（译注：并将它对仓库的权限设为只读），用它来运行进程。为了简化，下面我们将依旧使用运行了 Gitosis 的 &#8216;git&#8217; 用户。</p>
+
+<p>重启主机的时候，Git 进程会自行启动，一旦关闭了也会自行重启。要不重启就开启它，可以运行这个命令：</p>
+
+<pre><code>initctl start local-git-daemon</code></pre>
+
+<p>在其他系统上，或许应该使用 <code>xinetd</code>，<code>sysinit</code> 的一个脚本，或者其他的——只要能让那个命令进程化和可监控。</p>
+
+<p>然后，必须告诉 Gitosis 服务那些仓库允许基于 Git 协议的非授权访问。如果为每一个仓库设立了自己的节段，就可以指定想让 Git 进程给予可读权限的仓库。假如要允许通过 Git 协议访问前面的 iphone 项目，可以把如下内容加到 <code>gitosis.conf</code> 文件的结尾：</p>
+
+<pre><code>[repo iphone_project]
+daemon = yes</code></pre>
+
+<p>在提交和推送完成以后，运行中的进程将开始相应所有能访问主机 9418 端口的人发来的项目请求。</p>
+
+<p>假如不想使用 Gitosis，而又想架设一个 Git 协议进程，则必须为每一个想使用 Git 进程的项目运行如下命令：</p>
+
+<pre><code>$ cd /path/to/project.git
+$ touch git-daemon-export-ok</code></pre>
+
+<p>该文件（译注：指空文件 git-deamon-export-ok）告诉 Git 允许对该项目的非授权访问。</p>
+
+<p>Gitosis 还能控制 GitWeb 显示哪些项目。首先，在 <code>/etc/gitweb.conf</code> 添加如下内容：</p>
+
+<pre><code>$projects_list = &quot;/home/git/gitosis/projects.list&quot;;
+$projectroot = &quot;/home/git/repositories&quot;;
+$export_ok = &quot;git-daemon-export-ok&quot;;
+@git_base_url_list = (&#39;git://gitserver&#39;);</code></pre>
+
+<p>通过在 Gitosis 的设置文件里添加或删除 <code>gitweb</code> 设定，就能控制 GitWeb 允许用户浏览哪些项目。比如，我们想让 iphone 项目在 GitWeb 里出现，把 <code>repo</code> 的设定改成下面的样子：</p>
+
+<pre><code>[repo iphone_project]
+daemon = yes
+gitweb = yes</code></pre>
+
+<p>如果现在提交和推送该项目，GitWeb 会自动开始展示我们的 iphone 项目。</p>
+
+<div id='nav'>
+<a href='ch4-7.html'>prev</a> | <a href='ch4-9.html'>next</a>
+</div>
+        <div class='clearfix'></div>
+      </div>
+    </div>
+    <div id='footer'>
+      Book being translated into 
+        <a href="/book/de">German</a>, 
+        <a href="/book/zh">Chinese</a>, 
+        <a href="/book/ja">Japanese</a>,
+        <a href="/book/nl">Dutch</a> and
+        <a href="/book/ru">Russian</a><br/>.
+      All content under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/">Creative Commons Attribution-Non Commercial-Share Alike 3.0 license</a>.
+      <br/>Theme and code by <a href="http://github.com/mbleigh">Michael Bleigh</a>. Hosted by <a href='http://github.com/progit/progit.github.com/' target='_blank'>GitHub</a> and powered by <a href='http://github.com/mojombo/jekyll'>Jekyll</a>.
+    </div>
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+    var pageTracker = _gat._getTracker("UA-82337-15");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+  </body>
+</html>

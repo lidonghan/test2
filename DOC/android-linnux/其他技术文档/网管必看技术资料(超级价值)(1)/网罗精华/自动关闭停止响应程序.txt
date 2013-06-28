@@ -1,0 +1,4 @@
+自动关闭停止响应程序 
+
+　　在注册表中打开HKEY_CURRENT_USER\Control Panel\Desktop目录，把里面的AugoEndTasks键值改为1。
+如果注册表中找不到AutoEndTasks键值，则可以自己建一个串值并把它改为这个名字，值设为1就可以了。

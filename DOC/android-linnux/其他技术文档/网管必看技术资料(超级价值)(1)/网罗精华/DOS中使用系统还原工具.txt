@@ -1,0 +1,4 @@
+在DOS中使用系统还原工具   
+  
+　　在系统上电自检声响后，Windows欢迎屏幕出现之前按下F8键，接着在菜单中选择Safe Mode with Command Prompt，然后使用管理员身份登录，在命令行提示符后输入：%systemroot%\ system32\restore\rstrui.exe，回车后跟随屏幕上的向导将系统恢复到以前的正常状态。
+ 

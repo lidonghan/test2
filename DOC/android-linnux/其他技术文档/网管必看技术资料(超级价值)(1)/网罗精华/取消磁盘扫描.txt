@@ -1,0 +1,5 @@
+取消磁盘扫描
+　　问：我的电脑安装的是Windows XP，最近只要正常关机，再开机就会自动运行磁盘扫描。若是重新启动则不会有这种情况，以前用Windows 98操作系统时也遇到过这种情况，不知该如何解决？
+
+　　答：这是因为Windows XP认为你没有正常关机，所以强制性扫描。你可以在命令行提示符里面输入chkntfs /x X:取消对X盘的检查。另外建议你到Windows Update(http://windowsupdate.microsoft.com)上检查你的系统并安装相应的补丁程序。
+

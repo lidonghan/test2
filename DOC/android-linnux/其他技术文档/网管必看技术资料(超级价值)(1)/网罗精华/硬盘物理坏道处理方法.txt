@@ -1,0 +1,14 @@
+处理硬盘物理坏道方法
+
+　　一、用软件来解决
+　　1.在天极网Ftp://ftp1.mydown.com/home1/soft34/fbdisk10.zip下载一个大小仅19.8KB的小软件FBDISK(坏盘分区器)。它可将有坏磁道的硬盘自动重新分区，将坏磁道设为隐藏分区。在DOS下运行FBDISK，屏幕提示Start scan hard disk?(Y/N),输入Y，开始扫描硬盘，并将坏道标出来，接着提示Write to disk?(Y/N)，选Y。坏道就会被隔离。(山东 马坤)
+
+　　2.用PartitionMagic对硬盘进行处理。先用PartitionMagic中的“Check”命令来扫描磁盘，大概找出坏簇所在的硬盘分区，然后在Operations菜单下选择“Advanced/bad Sector Retest”。再通过Hide Partition菜单把坏簇所在的分区隐藏起来，这样就可以避免对这个区域进行读写。如果系统提示“TRACK 0 BAD，DISK UNUSABLE”，那么说明硬盘的零磁道出现坏道。这需要通过Pctools9.0等磁盘软件，把0扇区0磁道屏蔽起来，最后用1扇区取代它就能修复。
+
+　　以Pctools9.0为例，运行Pctools9.0中的de.exe文件，接着选主菜单Select中的Drive，进去后在Drive type项选Physical，按空格选中它，再按Tab键切换到Drives项，选中hard disk，然后回到主菜单，打开Select菜单，在出现的Partition Table中，选中硬盘分区表信息。找到C盘，该分区是从硬盘的0柱面开始的，那么，将1分区的Beginning Cylinder的0改成1，保存后退出。重新启动后再重新分区、格式化即可。(吉林 解国忠)
+
+　　二、重新分区再隐藏
+　　用Windows系统自带的Fdisk。如果硬盘存在物理坏道，通过Scandisk和Norton Disk Doctor我们就可以估计出坏道大致所处位置，然后利用Fdisk分区时为这些坏道分别单独划出逻辑分区，所有分区步骤完成后再把含有坏道的逻辑分区删除掉，余下的就是没有坏道的好盘了。(上海 任亚维)
+
+　　三、低级格式化
+　　使用主板自带的硬盘低格程序或硬盘厂家随盘赠送的低格程序如DM、LFORMAT等对硬盘全盘进行低级格式化处理，它可对硬盘坏道重新整理并排除。不过不到山穷水尽，这一招最好不要用，因为对硬盘作低格害处多多，至少会加速对盘片的磨损。(

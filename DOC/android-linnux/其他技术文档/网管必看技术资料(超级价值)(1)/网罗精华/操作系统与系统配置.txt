@@ -1,0 +1,21 @@
+操作系统与系统配置
+ 
+
+操作系统 最少需要的硬盘空间 最少需要的内存容量 其它
+ 
+DOS 50MB 32MB 
+Windows 3.1 100MB 32MB
+Windows 95 500MB 32MB
+Windows 98 500MB 64MB
+Windows ME 2GB(由于存在系统还原) 96MB
+Windows 2000 Professional 2GB 128MB 分别支持1个
+Windows 2000 Server 2GB 192MB 2个
+Windows 2000 Advanced Server 2GB 256MB 4个以上中央处理器
+Windows XP Home 2GB 128MB 
+Windows XP Professional 2GB 128MB
+Windows NT 4.0 Workstation 1GB 64MB
+Windows NT 4.0 Server 1GB 128MB
+Windows NT 4.0 Enterprise 2GB 192MB
+Linux 2GB 64MB
+ 
+ 

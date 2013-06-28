@@ -1,0 +1,5 @@
+禁止WinXP文件夹自动展开   
+
+　　WinXP的资源管理器里增加了一个比较人性化的功能，就是点击左侧的文件夹(或控制面板等)，如果该文件夹有子文件夹，它会自动展开此文件夹。一些用惯了老系统操作方式的用户，会嫌展开后滚动条加长，需要每次去点击展开后的“-”号。通过修改注册表即可以禁止这个功能。
+
+　　在注册表左侧展开主键[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]，把右窗口的名为“FriendlyTree”的DWORD值修改为“0”即可。返回资源管理器，点击一父目录，可以看到修改已经生效了。该主键下另一个名为“PersistBrowsers”的DWORD值是保存上次关机设置的开关状态，“1”为开，“0”为关。

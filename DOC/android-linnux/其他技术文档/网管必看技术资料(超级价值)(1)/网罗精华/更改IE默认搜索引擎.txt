@@ -1,0 +1,5 @@
+更改IE的默认搜索引擎
+　　问：我使用的系统是Windows XP。我用超级兔子IE保护器的功能把搜索引擎改为百度的http://www.baidu.com/baidu，可现在超级兔子IE保护器显示的搜索引擎是百度，但实际使用的还是微软的搜索引擎。请问我该怎么办？
+
+　　答：首先纠正一下，百度的搜索引擎是http://www.baidu.com。在注册表编辑器中找到HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Search\CustomizeSearch和HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Search\SearchAssistant，将这两个键值修改为：http://www.baidu.com。如果由于某种原因确实不能修改，你可以到http://bar.baidu.com安装一个百度搜霸或IE搜索伴侣。它会自动将IE的默认搜索引擎更改为百度的搜索引擎。
+

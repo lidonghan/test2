@@ -1,0 +1,44 @@
+如何找到自启动程序
+
+　　如果系统启动时自动加载的程序过多，会造成启动速度缓慢，而很多病毒或者木马也是在系统启动时自动加载的。所以了解怎样在Windows中查找自启动程序是非常重要的。
+
+　　一、在“启动”文件夹中寻找
+　　“启动”文件夹一般位于“系统盘符\Documents and Settings\用户名\开始菜单\程序\启动\”目录(Win 2000/XP)或“系统盘符\WINDOWS\Start Menu\Programs\启动\”目录。通过快捷方式的属性可以查出程序所在的位置。
+
+　　二、从自动批处理文件中寻找
+　　在Win 98中，Autoexec.bat和Winstart.bat文件中的程序在开机时自动执行；而在Win Me/2000/XP/2003中，这两个批处理文件默认不被执行。
+
+　　三、从系统配置文件中寻找
+　　在有些系统配置文件中也可以找到自启动程序的踪迹，如Config.sys、Win.ini、System.ini、Wininit.ini和Msdos.sys等。
+
+　　四、通过“系统配置实用程序”寻找
+　　在“开始→运行”中键入“msconfig.exe”启动“系统配置实用程序”，进入“启动”选项卡，即可查看随系统启动的程序名称和位置。
+　　注意：Win 2000本身没有Msconfig程序，可以从Win XP/2003中提取。
+
+　　五、从计划任务中寻找
+　　在“控制面板”中双击“任务计划”就可以查看是否有计划任务随系统一起启动。
+
+　　六、使用“系统信息”寻找
+　　进入“系统信息”主界面，依次展开分支“软件环境→启动程序”，就可以在右窗格中查看自启动程序名称和位置。
+
+　　七、使用“组策略”寻找
+　　在Win 2000/XP/2003中，在“开始→运行”中键入“gpedit.msc”，打开“组策略”，依次展开“用户配置→管理模板→系统→登录/注销”，双击“在用户登录时运行这些程序”，单击“显示”按钮，即可查看自启动程序。
+
+　　八、通过注册表寻找
+　　在注册表中，可以从下列键值中查找自启动程序的名称和位置。
+　　1.Userinit键
+　　位于“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Winlogon\Userinit”。这个键允许指定用逗号分隔的多个程序。
+　　2.Explorer\Run键
+　　位于“HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run”和“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run”。
+　　3.RunServicesOnce键
+　　RunServicesOnce键用来启动服务程序，在用户登录之前启动，具体位置是“HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce”和“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunServicesOnce”。
+　　4.RunServices键
+　　RunServices键指定的程序在RunServicesOnce指定的程序之后运行，不过仍在用户登录之前。具体位置是：“HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunServices”和“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\ CurrentVersion\RunServices”。
+　　5.Run键
+　　Run是自动运行程序最常用的键，位置在“HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run”和“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run”。
+　　6.Load键
+　　位于“HKEY_CURRENT_USER\Software\Microsoft\WindowsNT\CurrentVersion\Windows\load”。
+　　另外还有RunOnce、RunOnce\Setup等键。
+
+　　九、使用工具软件
+　　除了使用系统提供的工具以外，我们还可以求助于第三方软件，比如Windows优化大师、RegRun Gold等等。

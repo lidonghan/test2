@@ -1,0 +1,4 @@
+删除隐藏不活动的图标
+
+我们在Windows XP中使用程序时，大部分程序在使用当中会有一个活动图标显示在任务栏“时间显示”的右侧（系统托盘区）。而在任务栏属性中的通知区域里，有一个叫“隐藏不活动的图标”选项，如果勾选了该项，那么系统就会自动记录曾经在系统托盘区显示过程序活动图标。点击该选项的“自定义”按钮，就会在“过去的项目”一栏中看到很多历史记录。
+要删除这些内容也很简单，在“开始→运行”中键入regedit，打开注册表编辑器，展开“HKEY_CURRENT_US ER\Software\Microsoft\Windows\Curr entVersion\Explorer\TrayNotify”分支，其中“IconStreams”和“PastIconStream”项中分别存储着“当前项目”和“过去的项目”，将“TrayNotify”项删除，按Ctrl+Alt+Del组合键调出“Windows任务管理器”，单击进程选项卡，选择explorer.exe，结束进程。之后在“Windows任务管理器”中选“文件”→“新建任务”，在“创建新任务”中输入explorer.exe即可。

@@ -1,0 +1,4 @@
+无法升级更新
+　　问：我的系统出了问题，无法安装微软的更新程序，提示“Setup could not verify the integrity of the file Update.inf. Make sure the Cryptographic service is running on this computer”等信息，请问我该如何解决这个问题？
+
+　　答：删除C:\Windows\System32\CATROOT2 文件夹，然后重新安装更新程序。

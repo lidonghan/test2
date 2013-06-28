@@ -1,0 +1,9 @@
+删除NTFS分区
+　　
+1、用 Win 98启动盘启动系统，运行Fdisk，在Fdisk主菜单中选择第3项“Delete partition or Logical Drive”，在下一屏幕中选择第4项“Delete Non-DOS Partition”(删除非DOS分区)。
+2、此时可以看到第一项中显示的是NTFS格式分区(Fdisk将它认成Non-DOS分区)，将它删除。
+3、重启电脑，运行Fdisk，在Fdisk主菜单中选择第1项，把刚删除非DOS分区腾出的空间全部建成主DOS分区。按ESC退回后，再将刚建立的主DOS分区设置为活动分区。
+4、格式化C盘后，即可重装Win 98。
+
+　　另外：如果你有Win 2000安装盘，还可以用Win 2000来删除NTFS分区。放入Win 2000安装盘，然后将系统设置为从光盘启动。启动后开始安装Win 2000。在选择安装的分区以及分区的格式时，选择是NTFS格式的分区，并更改分区格式为FAT32。更改完毕后，就可以重新启动系统，格式化C盘并安装Win 98。
+

@@ -1,0 +1,4 @@
+加快软驱传输速度   
+
+　　可以通过修改系统注册表以获得较高的数据传输速度。具体方法如下：打开系统注册表编辑器，找到“HEKY_LOCAL_MACHINE\System\CurrentControlset\Services\Class\FCD\000”，在右边的窗口空白处，点击鼠标的右健新建一个“DWORD”值，命名为“Fore-Fifo”，健值设定为“0”。最后关闭注册表编辑器，重新启动电脑，一切就OK了
+ 

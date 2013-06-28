@@ -1,0 +1,4 @@
+注册表文件不出现确认对话框
+
+　去掉导入注册文件时弹出的对话框，只要打开注册表编辑器，展开到HKEY_CLASSES_ROOT\regfile\shell\open\command，将右边名称为“默认”的数据 regedit.exe "1" 改为 regedit.exe /s "1" 即可。如果想恢复的话，只要去掉“/s”即可。 
+

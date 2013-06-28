@@ -1,0 +1,8 @@
+更改系统源文件途径
+
+在开始－运行输入regedit进入注册表，依次展开到HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Setup。更改右边窗口里的Installation Sources、ServicePackSourcePath、SourcePath三个键值为新的途径。
+
+电脑报内容：
+1.在Windows98中：点击开始菜单，进入运行对话框，在对话框中输入“regedit”，打开注册表编辑器。打开HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Setup主键并选中它，双击右边窗口中的“SourcePath”，在键值中输入需要的路径即可。
+
+　　2.在Windows NT/2000/XP中：打开HKEY_LOCAL_MACHINE\Software\Microsoft\WindowsNT\CurrentVersion\Setup主键并选中它，双击右边窗口中的“SourcePath”，在键值中输入需要的路径即可。 

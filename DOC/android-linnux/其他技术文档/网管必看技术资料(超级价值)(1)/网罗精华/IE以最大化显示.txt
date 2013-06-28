@@ -1,0 +1,5 @@
+让IE以最大化显示
+　　问：我使用的操作系统是Windows 2000，上网一段时间后，突然发觉IE无法以最大化显示，把IE重装一遍后，也无法解决这个问题，请问我该怎么办？
+
+　　答：在“运行”中输入regedit打开注册表编辑器，选择“HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main\”，在右边的窗口中删除“Window_Placement”键，在 “HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Desktop\Old Work-Areas”右边窗口中删除“OldWorkAreaRects”键。关闭注册表编辑器，重新启动计算机，连续两次最大化IE窗口(即“最大化→还原→最大化”)，再次重新启动IE就可以了。
+

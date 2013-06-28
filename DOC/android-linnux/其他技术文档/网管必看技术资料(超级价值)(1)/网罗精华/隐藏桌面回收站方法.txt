@@ -1,0 +1,8 @@
+隐藏桌面‘回收站’的两个方法
+
+开始--运行 输入regedit，打开注册表，找到
+1) HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\NonEnum(没有该项则新建)
+在该项下新建一个DWORD值，并命名为{645FF040-5081-101B-9F08-00AA002F954E}，修改其参数为1即可；
+
+2) HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace
+将{645FF040-5081-101B-9F08-00AA002F954E}项删除便可重新登录后生效

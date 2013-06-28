@@ -1,0 +1,4 @@
+如何让注册表保持在根目录
+ 
+Windows XP 在打开[Regedit]时会停留在上次使用时的位置，可按下列修改后打开Regedit时便会停在根目录上：
+在[开始]-->[运行]-->键入[Regedit,HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Applets\Regedit,选择LastKey，清除其有关数值数据，然后在左边窗口上的Regedit右点鼠标，择选权限，在Administrators 的权限上全部选拒绝。

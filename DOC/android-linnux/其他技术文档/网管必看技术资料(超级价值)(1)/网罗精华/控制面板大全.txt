@@ -1,0 +1,98 @@
+控制面板大全 
+
+　　在程序运行过程中启动控制面板的各个设置功能： 
+var x:cardinal; 
+begin 
+{启动控制面板} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL',9); 
+{辅助选项 属性-键盘} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL access.cpl,,1',9); 
+{辅助选项 属性-声音} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL access.cpl,,2',9); 
+{辅助选项 属性-显示} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL access.cpl,,3',9); 
+{辅助选项 属性-鼠标} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL access.cpl,,4',9); 
+{辅助选项 属性-常规} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL access.cpl,,5',9); 
+{添加/删除程序 属性-安装/卸载} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Appwiz.cpl,,1',9); 
+{添加/删除程序 属性-Windows安装程序} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Appwiz.cpl,,2',9); 
+{添加/删除程序 属性-启动盘} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Appwiz.cpl,,3',9); 
+{显示 属性-背景} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0',9); 
+{显示 属性-屏幕保护程序} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,1',9); 
+{显示 属性-外观} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,2',9); 
+{显示 属性-设置} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,3',9); 
+{Internet 属性-常规} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Inetcpl.cpl,,0',9); 
+{Internet 属性-安全} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Inetcpl.cpl,,1',9); 
+{Internet 属性-内容} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Inetcpl.cpl,,2',9); 
+{Internet 属性-连接} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Inetcpl.cpl,,3',9); 
+{Internet 属性-程序} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Inetcpl.cpl,,4',9); 
+{Internet 属性-高级} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Inetcpl.cpl,,5',9); 
+{区域设置 属性-区域设置} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,0',9); 
+{区域设置 属性-数字} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,1',9); 
+{区域设置 属性-货币} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,2',9); 
+{区域设置 属性-时间} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,3',9); 
+{区域设置 属性-日期} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Intl.cpl,,4',9); 
+{游戏控制器-一般} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Joy.cpl,,0',9); 
+{游戏控制器-高级} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Joy.cpl,,1',9); 
+{鼠标 属性} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Main.cpl',9); 
+{多媒体 属性-音频} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,0',9); 
+{多媒体 属性-视频} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,1',9); 
+{多媒体 属性-MIDI} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,2',9); 
+{多媒体 属性-CD音乐} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,3',9); 
+{多媒体 属性-设备} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Mmsys.cpl,,4',9); 
+{调制解调器 属性} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Modem.cpl',9); 
+{网络} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Netcpl.cpl',9); 
+{密码 属性} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Password.cpl',9); 
+{扫描仪与数字相机 属性} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Sticpl.cpl',9); 
+{系统 属性-常规} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,0',9); 
+{系统 属性-设备管理器} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,1',9); 
+{系统 属性-硬件配置文件} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,2',9); 
+{系统 属性-性能} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Sysdm.cpl,,3',9); 
+{日期/时间 属性} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL timedate.cpl',9); 
+{电源管理 属性} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Powercfg.cpl',9); 
+{拨号属性} 
+x:=winexec('rundll32.exe shell32.dll,Control_RunDLL Telephon.cpl',9); 
+
+
+将图表变为真彩色 
+HKEY——CURRENT——USER 
+Control Panel 
+Control Panel 
+windowmetrics    新建字符串值 SHELL ICON BPP “16” 

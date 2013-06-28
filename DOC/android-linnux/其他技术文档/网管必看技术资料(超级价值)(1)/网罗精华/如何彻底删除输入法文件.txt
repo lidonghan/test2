@@ -1,0 +1,11 @@
+如何彻底删除输入法文件 
+
+
+    先到输入法设置中删除你要删除的输入法，使用搜索功能，搜索到输入法的对应文件删除！ 
+　　全拼：Winpy.ime、Winpy.mb、Winpy.hlp、Winpy.cnt。 
+　　双拼：Winsp.ime、Winsp.mb、Winsp.hlp、Winsp.cnt。 
+　　微拼：Pintllime.dll、Pintlgab.imd、Pintlgai.imd、Pintlgb.imd、Pintlgd.imd、 Pintlgdx.imd、Pintlgie.imd、Pintlgnt.cnt、Pintlgnt.hlp、Pintlgnt.i96、 Pintlgnt.ime、Pintlgrb.imd、Pintlgri.imd、Pintlgs.imd、Pintlgsi.imd、Pintlgsx.imd、Pintlgu.imd、Pintlguc..imd、Pintlphr.exe。 
+　　智能ABC：Winabc.cwd、Abcsda.dll、Abcwin.exe、Winabc.ime、Winabc.ovl、tmmr.rem、user.rem、Winabc.hlp、Winabc.cnt。 
+　　郑码：Winzm.ime、Winzm.mb、Winzm.hlp、Winzm.cnt。 
+　　内码输入法：Wingb.mb、Wingb.hlp、Wingb.cnt。 
+　　表形码：Winbx.mb，Winbx.ime，Winbx.hlp，Winbx.cnt。

@@ -1,0 +1,7 @@
+2000XP双系统启动问题
+
+先装好了WindowsXP，然后再安装Windows 2000。开机后发现Windows XP的滚动条消失后，电脑即黑屏，无法进入登录画面。
+
+　　其实，这个问题是因为当安装好Windows 2000后，某些系统文件从高版本变回低版本，因此导致Windows XP无法识别。解决这个问题很简单：从Windows XP安装光盘中将I386目录中的NTLDR、DOSNET.INF复制到C盘根目录下替换现有文件即可。
+
+　　提示：安装多操作系统时，遵循Windows 98→Windows 2000→Windows XP→Windows 2003的顺序，就不会出现系统间互相“干扰”的问题。 

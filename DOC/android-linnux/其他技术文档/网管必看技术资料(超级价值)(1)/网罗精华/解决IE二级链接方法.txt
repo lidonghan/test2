@@ -1,0 +1,18 @@
+IE无法打开二级链接
+
+IE新建窗口模块被破坏所致，需要重新注册几个动态链接文件。
+
+点击：开始---运行---重新注册（输入）以下DLL文件。（一个一个依次注册）
+regsvr32 Actxprxy.dll 
+regsvr32 Shdocvw.dll 
+
+重启系统，不行再添加以下的DLL文件。
+
+regsvr32 Mshtml.dll 
+regsvr32 Urlmon.dll
+regsvr32 Msjava.dll
+regsvr32 Browseui.dll
+regsvr32 Oleaut32.dll
+regsvr32 Shell32.dll
+
+另：msjava.dll是JAVA虚拟机的动态连接库，提示找不到模板是因为你的机子没装虚拟机,所以这个文件，你可以不必注册的。

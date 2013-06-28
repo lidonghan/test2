@@ -1,0 +1,5 @@
+隐藏启动程序方法
+
+    让程序可以随系统启动自动加载，并且在“启动”菜单和注册表中都找不到它。方法：
+　　在“开始→运行”中键入“gpedit.msc”，启动“组策略”，展开“用户配置→管理模板→系统→登录”，启用“在用户登录时运行这些程序”项，并单击“显示”按钮，添加某个程序，重新登录后该程序就会自动运行。
+　　打开“开始→程序→启动”菜单，看不到我们添加的程序项；在“开始→运行”中键入“regedit.exe”，启动“注册表编辑器”，分别展开分支“HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run”和“HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\Windows\Run”，也找不到刚才添加的程序信息。

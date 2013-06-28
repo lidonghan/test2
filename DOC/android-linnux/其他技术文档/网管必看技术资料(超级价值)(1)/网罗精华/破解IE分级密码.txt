@@ -1,0 +1,4 @@
+破解IE分级密码
+
+    可用编辑注册表的方法来找回密码，方法是在开始菜单的“运行”中键入“Regedit”命令打开注册表编辑器，随后找到HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\Currentversion\Policies\Ratings主键，在此保存的键值就是IE属性对话框“内容”选项中的“分级审查”中的口令，右侧窗口中的“FileName0”和“Key”两个键值记录了该口令，且二进制的“Key”键值是经过加密的，去掉口令的方法是将Ratings下的这两个子键删除即可。以后再进入IE，就可以安全地进入分级审查了，并且可以跳过输入旧密码，直接输入新密码即可。
+

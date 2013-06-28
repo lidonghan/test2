@@ -1,0 +1,8 @@
+解决鼠标右键被锁定
+
+
+　　问：我的电脑不知道为什么鼠标右键被锁定了，用不了。请问如何解决？
+
+　　答：可能是有人在你的注册表中做了手脚，锁定了右键菜单。打开注册表编辑器，选择以下子键：
+
+　　“HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer”在右窗格中找一个名为“NoViewContexMenu”的键值，把其数据改为00 00 00 00。或者干脆删除这个键值即可。

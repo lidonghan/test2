@@ -1,0 +1,3 @@
+在Windows 2000使用纯DOS的方法
+
+有一种非常巧妙的方法可以让Windows 2000安装后也能够进入纯DOS：在安装Windows 2000前先用Windows 98启动盘启动，并通过SYS C：命令向C盘传输系统，然后按常规方法安装Windows 2000，安装成功后即可在启动菜单中在默认的Microsoft Windows 2000菜单下会多出一个Microsoft Windows项目，选中此选项就会启动Windows，但由于我们并没有安装Windows 98，所以此时会出现我们需要的DOS窗口，而且绝对是正宗的实模式。

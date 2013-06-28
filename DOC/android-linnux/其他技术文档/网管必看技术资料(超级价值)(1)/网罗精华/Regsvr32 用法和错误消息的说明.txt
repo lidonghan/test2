@@ -1,0 +1,73 @@
+Regsvr32 用法和错误消息的说明 
+
+对于那些可以自行注册的对象链接和嵌入 (OLE) 控件，例如动态链接库 (DLL) 文件或 ActiveX 控件 (OCX) 文件，您可以使用 Regsvr32 工具 (Regsvr32.exe) 来将它们注册和取消注册。
+
+Regsvr32.exe 的用法 
+
+RegSvr32.exe 具有以下命令行选项： Regsvr32 [/u] [/n] [/i[:cmdline]] dllname 
+
+   /u - Unregister server<BR/> 
+   /i - Call DllInstall passing it an optional [cmdline]; 
+        when used with /u calls dll uninstall 
+   /n - do not call DllRegisterServer; this option must 
+        be used with /i 
+
+当您使用 Regsvr32.exe 时，它会尝试加载该组件并调用它的 DLLSelfRegister 函数。如果此尝试成功，Regsvr32.exe 会显示一个指示成功的对话框。如果此尝试失败，Regsvr32.exe 会返回一条错误消息，其中可能会包括一个 Win32 错误代码。要查看 Win32 错误代码的列表，请参见下面的 Microsoft Web 站点：  
+http://msdn.microsoft.com/library/en-us/netdir/adsi/win32_error_codes.asp  
+
+例如，要手动注册 Sample.ocx ActiveX 控件，请在 MS-DOS 提示符处键入以下命令：  
+c:\regsvr32.exe sample.ocx 
+
+Regsvr32.exe 错误消息 
+
+以下列表介绍了 RegSvr32 错误消息和可能的原因。  
+
+Unrecognized flag:/invalid_flag 
+
+键入的标志或开关组合无效（请参阅本文中的“Regsvr32.exe 的用法”一节）。  
+
+No DLL name specified. 
+
+未包括 .dll 文件名（请参阅本文中的“Regsvr32.exe 的用法”一节）。  
+
+Dllname was loaded, but the DllRegisterServer or DllUnregisterServer entry point was not found. 
+
+Dllname 不是 .dll 或 .ocx 文件。例如，键入 regsvr32 wjview.exe 就会生成该错误消息。  
+
+Dllname is not an executable file and no registration helper is registered for this file type. 
+
+Dllname 不是可执行文件（.exe、.dll 或 .ocx）。例如，键入 regsvr32 autoexec.bat 就会生成该错误消息。 
+
+Dllname was loaded, but the DllRegisterServer or DllUnregisterServer entry point was not found. 
+
+Dllname 可能未导出，或者内存中可能有损坏的 Dllname 版本。请考虑使用 Pview 来检测该文件并删除它。  
+
+Dllname is not self-registerable or a corrupted version is in memory. 
+
+例如，键入 regsvr32 icwdial.dll 后就会返回该错误消息，因为 Icwdial.dll 文件不能自行注册。如果您怀疑内存中有损坏的 Dllname 版本，请尝试重新启动计算机，或重新提取该文件的原始版本。如果您运行的是 Windows NT，可能需要使用 Microsoft Windows NT Server 4.0 资源工具包 中的 Kill 或 Pview 工具。有关其他信息，请单击以查看以下 Microsoft 知识库文章：  
+197155 如何终止孤立进程  
+
+OleInitialize failed (or OleUninitialize failed). 
+
+Regsvr32 必须先初始化 COM 库，然后才能调用所需的 COM 库函数并在关闭时撤消对该库的初始化。如果对 COM 库进行初始化或撤消初始化的尝试失败，就会出现这些错误消息。例如，Ole32.dll 文件可能已经损坏，或者其版本有误。  
+
+LoadLibrary("Dllname") failed.GetlastError returns 0x00000485 
+
+在 Winerror.h 中，0x00000485 = 1157 (ERROR_DLL_NOT_FOUND)，表示“找不到运行该应用程序所需的某个库文件”。例如，键入 regsvr32 missing.dll 后，如果找不到 Missing.dll 文件，就会返回该错误消息。  
+
+LoadLibrary("Dllname") failed.GetLastError returns 0x00000002 
+
+在 Winerror.h 中，0x00000002 = 2 (ERROR_FILE_NOT_FOUND)，表示“系统找不到指定的文件”。换言之，系统找不到相关的 DLL。例如，如果键入 regsvr32 icwdial.dll，而此时缺少 Tapi32.dll（依赖项），就会返回该错误消息。  
+
+LoadLibrary("dskmaint.dll") failed.GetLastError returns 0x000001f 
+
+在 Winerror.h 中，0x000001f = 31 (ERROR_GEN_FAILURE)，表示“附加到系统上的设备不能正常工作”。如果您尝试注册 Win16 .dll 文件，就会发生此现象。例如，键入 regsvr32 dskmaint.dll 会返回该错误消息。  
+
+DllRegisterServer (or DllUnregisterServer)in Dllname failed.返回代码是：字符串 
+
+在 Winerror.h 中搜索字符串。  
+Regsvr32.exe 和依赖项 
+RegSvr32.exe 依赖于 Kernel32.dll、User32.dll 和 Ole32.dll 文件（在 Windows NT 中，还依赖于 Msvcrt.dll 和 Advapi32.dll 文件）。Regsvr32.exe 会加载您尝试注册或撤消注册的文件及其所有依赖项。如果缺少必需的文件或者它们已损坏，该进程可能会失败。  
+
+您可以使用 Depends.exe 来确定您尝试注册或撤消注册的文件的依赖项。在 Microsoft Windows 98 资源工具包 和 Microsoft Windows NT 4.0 资源工具包 支持工具中都提供了 Depends.exe。 
+247024 Tools Included with the Microsoft Windows 98 Resource Kit  

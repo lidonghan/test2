@@ -1,0 +1,6 @@
+删除遗留的鼠标右键菜单项
+　　问：我在电脑中已经删除了Winamp，但是右击某些文件夹时，右键菜单中依然会有“用Winamp播放”等选项。请问怎样删除它们？
+
+　　答：打开注册表：找到HKEY_LOCAL_MACHINE\Software\CLASSES\Folder\shell\
+HKEY_LOCAL_MACHINE\Software\CLASSES\Directory\shell\
+两个键值，看看是否有相应的键值。并且在注册表查找“Winamp”等关键字，删除相应的键值即可。注意删除前清洗备份注册表！

@@ -1,0 +1,6 @@
+如何移动收藏夹 
+
+　　在Win 2000中各个用户的收藏夹被保存在自己特定的文件夹中，不过我们完全可以将它移动到其他地方让所有用户都可以看到，具体方法如下： 　　
+　　
+　　打开注册表编辑器，进入主键［HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders］，然后将其中的“Favorites”的键值设置为其他路径，比如：C:\Favorites。 
+　　重新启动後，“Favorites”收藏夹就出现在C盘下。

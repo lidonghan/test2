@@ -1,0 +1,73 @@
+windows下的EXE文件大揭密
+
+当我们安装完Windows后，其中的文件到底是执行何种任务？某特定任务又由哪个文件来执行呢？ 还有，从“开始”——“程序”——再点击“我所要执行的任务”，这种套数还真有点繁琐。 若是知道经常要执行的任务是哪个文件、位于何处？把它在桌面上建立一快捷方式，岂不省时 省力又方便！这就需要对Windows下的可执行文件明明白白。（注：若是以下所述的可执行文件 不在Windows安装目录下，可能是因为你没有安装，可到“控制面板”——“添加/删除程序” ——“Windows安装程序”，选取所要安装的组件。 
+本文假设Windows98安装在“C:\windows”下. 
+C:\Windows下的可执行文件 
+accstat.exe windows 辅助状态指示器 
+arp.exe tcp/ip地址转换协议命令 
+calc.exe 计算器应用软件 
+cdplayer.exe cd播放器附件 
+cleanmgr.exe 磁盘清理程序 
+clipbrd.exe 剪贴板查看应用程序 
+command.com ms－dos方式 
+control.exe 控制面板应用程序 
+cvt1.exe fat32转换器 
+defrag.exe 磁盘碎片整理应用程序 
+drvspace.exe 磁盘空间管理应用程序 
+dialer.exe 电话拨号程序 
+directcc.exe 直接电缆连接 
+explorer.exe 资源管理器 
+extrac32.exe windows cab 文件解压缩应用程序 
+fontview.exe 字体查看程序 
+filexfer.exe microsoft文件传输应用程序 
+finger.exe 用于获得来自于运行标准finger服务的任何系统的用户信息 
+freecell.exe 空当接龙游戏 
+grpconv.exe 程序组转换器 
+hostname.exe 返回tcp/ip配置窗口的dns标题头窗口中定义的计算机名字 
+ipconfig.exe 快速浏览系统tcp/ip配置应用程序 
+kodakprv.exe 映像预览应用程序 
+mplayer.exe 媒体播放机 
+mshearts.exe 红心大战游戏 
+nbtstat.exe 显示tcp/ip上的netbios（netbt）的状态 
+net.exe 一个非常全的网络配置、显示网络信息的命令,有详细帮助 
+netstat.exe 用于检查所有tcp、ip以及udp连接的统计情况 
+netdde.exe windows 网络dde（动态数据交换） 
+netwatch.exe 网络监视器 
+notepad.exe 记事本应用程序 
+packager.exe 对象包装应用程序 
+pbrush.exe 画笔应用程序 
+ping.exe 检测网络远端主机是否存在及判断网络是否正常的检测工具 
+progman.exe windows3.x中的程序管理器 
+qfecheck.exe 更新信息工具 
+regedit.exe 注册表编辑器 
+route.exe 用于管理本地tcp/ip路由表的应用程序 
+rsrcmtk.exe 显示资源状况 
+rundll32.exe 将dll作为应用程序运行 
+scandskw.exe 磁盘扫描应用程序 
+smartdrv.exe smartdrive（dos磁盘缓冲器）应用程序 
+sigverif.exe microsoft 签字应用程序 
+sndrec32.exe 录音机附件 
+sndvol32.exe 音量控制 
+sol.exe 纸牌游戏 
+sysmon.exe 系统监视器 
+taskman.exe 任务执行栏应用程序 
+taskmon.exe 任务监视器应用程序 
+telnet.exe 虚拟终端程序 
+tftp.exe 小文件传送协议，允许将文件传送给tftp服务器 
+tracert.exe 决定用户的系统与目标系统之间的路径 
+tuneup.exe windows 调整向导 
+vcmui.exe 版本冲突管理器 
+wangimg.exe 映像应用程序 
+welcome.exe 欢迎光临widows实用程序 
+winfile.exe windows3.x中的文件管理器 
+winhelp.exe 16位的windows 帮助程序 
+winhlp32.exe 32位的windows 帮助程序 
+wininit.exe windows 安装初始化应用程序 
+winipcfg.exe tcp/ip 配置实用程序 
+winmine.exe 扫雷游戏 
+winpopup.exe windows 弹出式消息实用程序 
+winver.exe 显示windows 版本号 
+write.exe 写字板附件 
+winrep.exe windows 报告工具 
+winalign.exe 排列本地文件应用程序 
+wupdmgr.exe windows 更新工具

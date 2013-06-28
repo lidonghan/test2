@@ -1,0 +1,167 @@
+AWARD BIOS设置详解
+
+
+　　AWARD公司是世界最大的BIOS生产厂商之一，其产品也被广泛使用。但由于AWARD BIOS里面的信息都是基于英文且需要用户对相关专业知识的理解相对深入，使得普通用户设置起来感到困难很大。而如果这些设置不当的话，将会影响整台电脑的性能设置是不能正常使用，所以一份详细的设置说明是必要的。下面就介绍一下AWARD BIOS中的有关设置选项的含义和设置方法。
+
+【Standard CMOS Setup】(标准设定)
+　　在本菜单中，用户可以修改日期、时间、第一主IDE设备(硬盘)和IDE设备(硬盘或CD－ROM)、第二个主IDE设备(硬盘或CD－ROM)和从IDE设备(硬盘或CD－ROM)、软驱A与B、显示系统的类型、什么出错状态要导致系统启动暂停等。主要说明如下：
+
+(1) 用户可以在Type(类型)和Mode(模式)项设置为Auto，使BIOS自动检测硬盘。也可以在主菜单中的【IDE HDD Auto Detection】操作来设置。用户还可以使用User选项，手动设定硬盘的参数。您必须输入柱面数(Cyls)，磁头数(Heads)，写预补偿(Precomp)，磁头着陆区(Landz)，每柱面扇区数(Sectorxs)，工作模式(Mode，内容见下)等几种参数。硬盘大小在上述参数设定后自动产生。
+
+　　硬盘工作模式（MODE）的三种选項：
+
+NORMAL模式：传統的标准模式，支持硬盘容量最高至528MB。 
+LARGE模式：当硬盘容量超过528MB，而硬盘或操作系統不支持LBA模式时，可采用此选项。 
+LBA 模式(Logical Block Addressing Mode)：适用于硬盘容量超过528M且支持"逻辑区块地址"(LBA)功能（一般都使用此项） 
+　
+
+(2) 显示类型可选EGA/VGA(EGA、VGA、SEGA、SVGA、PGA显示适配卡选用)、CGA40(CGA显示卡，40列方式)、CGA80(CGA显示卡，80列方式)、MONO(单色显示方式，包括高分辨率单显卡)等四种，用户应根据情况正确选用。
+
+(3) 暂停的出错状态选项有：
+1. AllErrors：BIOS检测到任何错误，系统启动均暂停并且给出出错提示。
+2. NoErrors：BIOS检测到任何错误都不使系统启动暂停。
+3. All ，But Keyboard：除键盘错误外，BIOS检测到任何其它错误，均暂停系统启动并且给出出错提示。
+4. All ，But Disk/Key：除键盘、磁盘错误外，BIOS检测到任何其它错误，均暂停系统启动并且给出出错提示。
+
+【BIOS Features Setup】(功能设定)
+　　该项用来设置系统配置选项清单，其中有些选项由主板本身设计确定，有些选项用户可以进行修改设定，以改善系统的性能。主要说明如下：
+(1) VirusWarning：病毒防御警告(缺省值为Disable)，此功能可防止硬盘的关键磁区及分区被更改，任何试图写入该区的操作將会导致系統死机并形式警告信息。
+注意：当安装新的操作系統(如Win95)时，请先取消(disable)此功能，以免因冲突而无法顺利安装。
+(2) CPU Internal Cache：缺省为Enable(开启)，它允许系统使用CPU内部的第一级Cache。486、586档次的CPU内部一般都带有Cache，除非当该项设为开启时系统工作不正常，此项一般不要轻易改动。该项若置为Disable(关闭)，将会降低系统的性能。
+(3) External Cache：缺省设为Enable，它用来控制主板上的第二级(L2)Cache。根据主板上是否带有Cache，选择该项的设置。
+(4) Quick Power On Self Test：缺省设置为Enable，该项主要功能为加速系统上电自测过程，它将跳过一些自测试。使引导过程加快。
+(5) IDE HDD Block Mode Sectors：IDE硬盘设定, 預设值为HDDMAX。新式IDE硬盘大多支持一次传输多个磁块的功能。启用(enable)本功能可加快硬盘存取速度。选項有HDDMAX、Disabled、2、4、8、16、及32。
+(6) HDD Sequence SCSI/IDE First：IDE/SCSI硬盘开机优先顺序设定，缺省值为IDE。当同时安装SCSI及IDE硬盘时,本选项功能可用来选择以SCSI或IDE硬盘作为开机硬盘。
+(7) BootSequence：选择驱动器启动顺序。一般有以下几种启动顺序：
+[A，CD-ROM，C]、[CD-ROM，C，A]、[D，A]、[E，A]、[F，A]、[C only]、[A，C]、[C，A]
+请注意，某些老式主板并不支持由CD－ROM启动，而现在的新主板增加了更多的启动顺序如LS120，ZIP等。
+(8) Swap Floppy Drive：(交换软盘驱动器)缺省设定为Disable。当它Disable时，BIOS把软驱连线扭接端子所接的软盘驱动器当作第一驱动器。当它开启时，BIOS将把软驱连线对接端子所接的软盘驱动器当作第一驱动器，即在DOS下A盘当作B盘用，B盘当作A盘用。
+(9) BootUp Floppy Seek：当Enable时，机器启动时BIOS将对软驱进行寻道操作。
+(10) Floppy Disk Access Contol：当该项选在R/W状态时，软驱可以读和写，其它状态只能读。
+(11) BootUp Numlock Strtus：该选项用来设置小键盘的缺省状态。当设置为ON时，系统启动后，小键盘的缺省为数字状态；设为OFF时，系统启动后，小键盘的状态为箭头状态。
+(12) BootUp System Speed：该选项用来确定系统启动时的速度为HIGH还是LOW。
+(13) Typematic Rate Setting：该项可选Enable和Disable。当置为Enable时，如果按下键盘上的某个键不放，机器按您重复按下该键对待（重复按键速度可在下面的选项中设置）；当置为Disable时，如果按下键盘上的某个键不放，机器按键入该键一次对待。
+(14) Typematic Rate：如果上面的选项置为Enable，那么可以用此选项设定当您按下键盘上的某个键一秒钟，那么相当于按该键6次。该项可选6、8、10、12、15、20、24、30。
+(15) Typematic Delay：如果(13)选项置为Enable，那么可以用此选项设定按下某一个键时，延迟多长时间后开始视为重复键入该键。该项可选250、500、750、1000，单位为毫秒。 
+(16) Security Option：选择System时，每次开机启动时都会提示您输入密码，选择Setup时，仅在进入CMOS Setup时会提示您输入密码（该设置仅在设置了密码的情况下有效）。
+(17) PS/2Mouse Function Control：当该项设为Enable，机器提供对于PS/2类型鼠标的支持。否则，选Disable。
+(18) Assign PCI IRQ For VGA：选Enable时，机器将自动设定PCI显示卡的IRQ到系统的DRAM中，以提高显示速度和改善系统的性能。
+(19) PCI/VGA Palett Snoop：该项用来设置PCI/VGA卡能否与MPEGISA/VESAVGA卡一起用。当PCI/VGA卡与MPEGISA/VESAVGA卡一起用时，该项应设为Enable，否则，设为Disable。
+(20) OS/2 Select For DRAM>64MB：该项允许您在OS/2操作系统中，使用64M以上的内存。该项可选为NON－OS2，OS2。
+(21) System BIOS Shadow：该选项的缺省设置默认为Enable，当它开启时，系统BIOS将拷贝到系统Dram中，以提高系统的运行速度和改善系统的性能。
+(22) Video BIOS Shadow：缺省设定为开启(Enable)，当它开启时，显示卡的BIOS将拷贝到系统DRAM中，以提高显示速度和改善系统的性能。
+(23) C8000－CBFFF Shadow/DFFFF Shadow：这些内存区域用来作为其他扩充卡的ROM映射区，一般都设定为禁止(Disable)。如果有某一扩充卡ROM需要映射，则用户应搞清楚该ROM将映射地址和范围，可以将上述的几个内存区域都置为Enable;但这样将造成内存空间的浪费。因为映射区的地址空间将占用系统的640K～1024K之间的某一段内存。
+
+　
+
+【Chipset Features Setup】(芯片组功能设定) 
+　　该项用来设置系统板上芯片的特性。它有以下选项： 
+
+注意：此菜单下的选项会因不同主板而不同，如果你不太了解它们的功能，最好设置为缺省值。 
+
+(1) ISA Bus Clockfrequency(PCICLK/4)ISA：传输速率率设定，设定值有：PCICLK/3；PCICLK/4。
+(2) Auto Configuration：自动状态设定，当设定为Enabled时BIOS依最佳状况状态设定，此时BIOS会自动设定DRAMTiming，所以会有无法修改DRAM的细项时序，我们强烈建议选用Enabled，因为任意改变DRAM的时序可能造成系统不稳或不开机。
+(3) Aggressive Mode：高级模式设定，当您想获得较好的效能时，而且系统在非常稳定状态下，可以尝试Enabled此项功能以增加系统效能，不过必须使用较快速DRAM(60ns以下)。
+(4) VIDEO BIOS Cacheable：(视频快取功能，缺省值为Disable)，为Enable时，启用快取功能以加快显示速度；为Disable时，取消此功能。
+(5) Memory Holeat Address：(缺省值为None)，一些ISA卡会要求使用14-16MB或15-16MB的内存地址空间，若选取14MB-16MB或15MB-16MB，则系統將无法使用这部份的内存空间。您可选取None来取消此功能。
+(6) OnboardFDC SwapA：B：(A，B盘互換，缺省值为NoSwap)，当启用(enable)本項功能时则A，B盘互換 。亦即原先A盘被指定成B盘，B盘被指定为A盘。如此一来，您就不需打开机箱互换排线了。
+(7) OnboardSerialPort1：(缺省值为3F8H/IRQ4)，设定主机板上串口1的位址及IRQ，选項有：3F8H/IRO4、2F8H/IRQ3、3E8H/IRQ4、2E8H/IRQ10、Disable。
+(8) OnboardSerialPort2：(缺省值为2F8H/IRQ3)，设定主机板上串口2的位址及IRQ，选項有：3F8H/IRQ4、2F8H/IRQ8、3E8H/IRQ4、2E8H/IRQ10、Disable。
+(9) OnboardParallelPort：(缺省值为378H/IRQ7)，设定主机板上并口的位址及IRQ。
+(10) Parallel PortMode：(并口模式，缺省值为ECP+EPP)，并口的操作模式有下列选項：
+Normal：一般速度单向运行。
+EPP：最高速度双向运行。
+ECP：超高速双自运行。
+ECP+EPP：ECP与EPP二种模式并用。
+(11) ECP DMA Select：(ECP DMA通道选择，缺省值为3)，若在ECP模式下操作时，则提供DMA通道选择，有1，3，Disable三种设定。
+(12) UART2 UseInfrared：(缺省值为Disable)，本項功能用来支持紅外线（IR）传输功能。为Enable时，则设定第二序列UART支持红外线传输功能。设为Disable时，则设定第二序列UART支持COM2。
+注意：如果没有红外线设备，不要Enable此项，否则会造成不必要的麻烦，例如系统不识别MODEM。
+(13) Onboard PCI IDE Enable：(主机板IDE通道设置，缺省值为Both)，用来启用內建IDE通道。选项有：
+Primary IDE Channel：仅启动主IDE通道（即第一IDE通道）。
+Secondary IDE Channel：仅启动辅IDE通道（即第二IDE通道）。
+Both：第一、二IDE通道均启用。
+Disable：禁用所有IDE通道。
+(14) IDE PIO Mode：这个设置取决于系统硬盘的速度，包括AUTO，0，1，2，3，4五个选项，Mode4硬盘传输速率大于是16.6MB/秒，其它模式的小于这个速率。请不要选择超过硬盘速率的模式，这样会丢失数据。
+(15) IDE UDMA(UltraDMA) Mode：Intel430TX以后的芯片提供了Ultra DMA Mode，它可以把传输速率提高到一个新的水准。
+(16) IDE0Master/SlaveMode，IDE1Master/SlaveMode：(硬盘时序模式设定，缺省值为Auto)，设为Auto时，系統会自动检查四個IDE 装置的时序模式以确保以最佳速度运行。也可以自行设定时序模式为(0，1，2，3，4)。
+
+
+【Power Management Setup】（节电功能设定） 
+　　该项为电源管理设定，用来控制主板上的"绿色"功能。该功能定时关闭视频显示和硬盘驱动器以实现节能的效果。具体来说，实现节电的模式有四种： 
+
+1、Doze模式：当设定时间一到，CPU时钟变慢，其他设备照常运作；
+2、Standby模式：当设定时间一到，硬盘和显示将停止工作，其他设备照常运作；
+3、Suspend模式：当设定时间一到，除CPU以外的所有设备都将停止工作；
+4、HDD Power Down模式：当设定时间一到，硬盘停止工作，其他设备照常运作。 
+
+该菜单项下面的可供选择的内容有以下几种： 
+
+(1) Power Management：节电模式的主控项，有四种设定：
+Max Saving：(最大节电)在一个较短的系统不活动的周期(Doze、Standby、Suspend、HDDPowerDown四种模式的缺省值均为1分钟)以后，使系统进入节电模式，这种模式节电最大。
+MIN Saving：(最小节电)在一段较长的系统不活动的周期在这种情况下，(Doze，Standby，Suspend三种模式的缺省值均为1小时，HDD Power Down模式的缺省值为15分钟)后，使系统进入节电模式。
+Disable：关闭节电功能，是缺省设置。
+User Defined：(用户定义)允许用户根据自己的需要设定节电的模式。 
+
+(2) VideoOFFOption：（显示器关闭设定,缺省值为Susp, Stby->Off），本选项用来设定在何种模式下关闭显示器，选项如下：
+1. Susp，Stby->Off：只在待机(Standby)或暫停(Suspend)的省电模式下才关闭显示器。
+2. Suspend->Off：只在暫停(Suspend) 模式下才关闭显示器。
+3. Alwayson：在任何模式下均不关，显示器照常显示。
+4. Allmodes->Off：在任何省电模式下均关闭显示器。 
+
+(3) Video Off Method：(视频关闭)该选项可设为V/HSync＋Blank、Dpms、BlankScreen三种，具体如下： 
+
+1. V/HSync＋Blank：将关闭显示卡水平与垂直同步信号的输出端口，向视频缓冲区写入空白信号。
+2.DPMS(显示电源管理系统)：设定允许BIOS在显示卡有节电功能时，对显示卡进行节能信息的初始化。只有显示卡支持绿色功能时，用户才能使用这些设定。如果没有绿色功能，则应将该行设定为Blank Screen(关掉屏幕)。
+3. Blank Screen(关掉屏幕)：当管理关掉显示器屏幕时，缺省设定能通过关闭显示器的垂直和水平扫描以节约更多的电能。没有绿色功能的显示器，缺省设定只能关掉屏幕而不能终止CRT的扫描。
+(4) PM Timers(电源管理记时器)：下面的几项分别表示对电源管理超时设置的控制。Doze，StandBy和Suspend Mode项设置分别为该种模式激活前的机器闲置时间，在MAX Saving模式，它每次在一分钟后激活。在MIN Saving模式，它在一小时后激活。
+(5) Power Down、Resume Events(进入节电模式和从节电状态中唤醒的事件)：该项下面所列述的事件可以将硬盘设在最低耗电模式，工作、等待和悬挂系统等非活动模式中若有事件发生，如敲任何键或IRQ唤醒、鼠标动作、MODEM振铃时，系统自动从电源节电模式下恢复过来。
+(6) Soft－OffByPwr－Bttn：ATX机箱的设计不同于传统机箱，按下开关4秒以上才能关闭系统；选择instant－off方式将使ATX机器等同于传统机器，而若置为delay4sec方式，那么您按住开关的时间不足4秒时将使系统进入SuspendMode。
+
+
+【PNP/PCI Configuration Setup】(即插即用与PCI状态设定) 
+　　该菜单项用来设置即插即用设备和PCI设备的有关属性。 
+
+(1) PNP OS Installed：如果软件系统支持Plug－Play，如Win95，可以设置为YES。
+(2) Resources ControlledBy：AWARD BIOS支持"即插即用"功能，可以检测到全部支持"即插即用"的设备，这种功能是为类似Win95之类操作系统所设计，可以设置Auto(自动)或Manual(手动)。
+(3) Resources Configuration Data：缺省值是Disabled，如果选择Enabled，每次开机时，Extend System Configuration Data(扩展系统设置数据)都会重新设置。
+(4) IRQ 3/4/5/7/9/10/11/12/14/15，Assingned To：在缺省状态下，所有的资源除了IRQ3/4，都设计为被PCI设备占用，如果某些ISA卡要占用某资源可以手动设置。
+
+
+【Load BIOS Defaults】(载入BIOS缺省值) 
+　　当系統安装后不太稳定,则可选用本功能。此时系统将会取消一些高效能的操作模式设定，而处在最保守状态下。因此使用它容易找到主机板的安全值和除去主板的错误。当选择本项时,主画面会出现下列信息：
+Load BIOS Defaults（Y/N）?
+键入Y并按Enter即可执行本项功能。
+注意：本项功能不会影响CMOS內存储的"标准设定"（即【Standard CMOS Setup】项的设置值）
+
+
+【Load Setup Defaults】（載入SETUP缺省值） 
+　　此为BIOS出厂的设定值。此时系统会以最佳化的模式运行。选择此功能时,主画面会出现下列信息：
+Load SETUP Defaults（Y/N）?
+键入Y并按Enter即可执行本项功能。
+
+
+【Supervisor Password And User Password Setup】(管理者与使用者密码设定) 
+　　User Passowrd Setting功能为设定密码。如果要设定此密码，首先应输入当前密码，确定密码后按y，屏幕自动回到主画面。输入User Passowrd可以使用系统，但不能修改CMOS的内容。输入SupervisorPassword可以输入、修改CMOS BIOS的值，Supervisor Password是为了防止他人擅自修改CMOS的内容而设置的。用户如果使用IDE硬盘驱动器，该项功能可以自动读出硬盘参数，并将它们自动记入标准CMOS设定中，它最多可以读出四个IDE硬盘的参数。
+
+
+【Saveand Exit Setup】將设定值儲存後，离开设置主画面。
+
+【Exit Without Saving】不儲存设定值，直接离开设置主画面。
+以上介绍了Award BIOS Setup的常用选项的含义及设置办法。由于每种版本的BIOS具体设置都有所不同，所以上面列举的设置项目，可能少于或多于你系统内的项目，但一般情况下，各种设置都大同小异，触类旁通。另外，由于AMI BIOS的设置同AWARD BIOS基本相同，这里就一一介绍。
+
+
+免跳线CPU在BIOS中的设置
+
+--------------------------------------------------------------------------------
+
+　　目前有不少免跳线主板采用BIOS程序设置CPU工作状态，这无疑是超频族的福音，因为它免去了许多麻烦，给用户带来了方便。如升技BH6、微星6119 W（中文BIOS）等主板，只要将CPU插好，启动计算机，进入BIOS设置程序，就可对CPU参数进行设置，设置的内容包括CPU工作电压、CPU外频和CPU内频等。下面就介绍具体的设置：
+(1) CPU Operating Speed：CPU的内核工作速度设定。选项包括：User Define(用户定义)、233（66×3.5）、266（66×4）、300（66×4.5）、333（66×5）、350（100×3.5）、400（100×4）等选项。选择User Define后，CPU外频和倍频由用户在下面的（3）、（4）中自行设置。另外，最新的微星6119（W）的BIOS设置中的CPU Plug & Play选项，可自动检测CPU、设置其工作状态。
+(2) Turbo Frequency：CPU外频加速模式设定。当Enable时，CPU的频率被提升2.5％，此项目仅在External Clock（外频）支持Turbo模式时方出现（目前只对100MHz提供支持）。
+(3) External Clock：CPU外频设定，包括66、75、83、100、112、124、133MHz等选项。
+(4) Multiplier Factor：CPU倍频设定，有2.0、2.5、3.0、3.5、4.0、4.5、5.0、5.5倍等选项
+(5) SEL100/66＃ Signal：Signal 100/66信号设定，包括High"（高）和"Low"（低）两个选项。当设置为"High"时，CPU外频为100MHz，设置为"Low"时为66MHz。
+注意：有些PⅡ350和PⅡ400运行在100MHz外频时，倍频分别被锁定于3.5和4.0倍频，SEL100/66＃信号设置为"Low"，可解除对倍频的锁定。
+(6) AGPCLK/CPUCLK：AGP时钟设定。缺省值为2/3，此时AGP工作频率是CPU外频的2/3，如改设为1/1，则AGP工作频率等于CPU外频。
+(7) Speed Error Hold：速度错误处理设定。包括"Disable"和"Enable"选项。默认 为"Disable"。如设置为"Enable"则相当于禁止超频，由系统自动检测CPU，发现设置值与CPU标称值不符时系统拒绝工作。
+(8) CPU Power Supply：CPU电压设定。包括"CPU Default"（默认）和"User Define"（用户定义）选项。选择"User Define"时，需在（9）中设置CPU内核电压。
+(9) Core Voltage ：CPU内核电压设定。包括1.30V至3.2V间的电压选项。选择项中对电压有一定限制，对2.8V 的 Pentium Ⅱ，电压最高可调至3.2V；对2.0V的Pentium Ⅱ，最高只可调至2.3V。

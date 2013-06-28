@@ -1,0 +1,7 @@
+EXE文件关联丢失的解决方法
+
+1、修改regedit.exe 为 regedit.com
+2、HKEY_CLASSES_ROOT\exefile\shell\open\command下的default,键值为"%1" %*。
+
+另外，exe程序关联问题，在注册表下的HKEY_LOCAL_MACHINE\Software\Microsoft\windowsNT\currentVersion\winlogon
+下面有个名为shell的子项，键值应为explorer.exe。

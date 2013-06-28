@@ -1,0 +1,8 @@
+如何进入BIOS设置?  
+
+　　不同的BIOS有不同的进入方法，通常会在开机画面有提示。
+　　Award BIOS：按“Del”键
+　　AMI BIOS：按“Del”或“ESC”键
+　　Phoenix BIOS：按“F2”键
+　　Compaq（康柏）按“F10”键
+ 

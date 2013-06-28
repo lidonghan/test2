@@ -1,0 +1,3 @@
+解决接通电源后自动开机问题
+
+ATX主板经常会遇到这样的问题，一般在主板的BIOS里将电源管理项“POWER ON AFTER PWFAIL”设为OFF即可。

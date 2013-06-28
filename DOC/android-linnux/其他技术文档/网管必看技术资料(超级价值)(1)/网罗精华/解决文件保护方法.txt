@@ -1,0 +1,40 @@
+"文件保护"的解决方法
+这可能是因为你先前删除了一些文件而导致的，只要在组策略中进行一下设置即可：单击“开始→运行”，输入“gpedit.msc”，然后依次展开“计算机配置→管理模板→系统→Windows文件保护”，然后双击“设置文件保护扫描”并将其设置为“禁用”即可。
+我按以下步骤关闭文件保护
+1、点击开始-->运行，键入regedt32并回车；
+2、找到[HKEY_LOCAL_MACHINE/SOFTWARE/Microsoft/Windows NT/CurrentVersion/Winlogon]；
+3、在右侧的窗格中右键单击选择New-->DWORD Value，为其命名为SFCDisable；
+4、在Hexadecimal项下输入键值为ffffff9d以关闭WFP；
+5、重新启动系统使所做的更改生效
+但是进行到第三步时就发现右侧的窗格里没有new这个选项，进行不下去了！ 
+描述：
+　　该设置可以控制是否要系统开启文件保护功能即 (SFC) 它可以监视Windows的系统文件每当系统启动时候。我们可以修改注册表自由的控制文件的扫描参数。 
+操作：
+
+
+打开你的“注册表编辑器”。然后找到[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon]这个子键。在右侧的窗口中创建一个“双字节值”并命名为“SFCScan”然后修改其值为 0 = 禁用, 1 = 启动时扫描, 2 = 扫描一次。 
+退出“注册表编辑器”注销或重新启动计算机，你会看到更改后的效果。 
+Windows XP和2000包括一种叫做WFP（Windows File Protection，Windows文件保护）的技术。把"SFCDisable"键的键值设置为"ffffff9d"可禁用WFP，而设置为"0"则可以启用它。其它一些可用的键值如下：
+1 - 禁用，但是在系统启动的时候会询问你是否重新启用
+2 - 只在下一次重启动的时候禁用，也不会询问你是否重新启用
+4 - 启用，并且，不显示弹出窗口
+ffffff9d - 完全禁用 
+还原受保护的Windows系统文件：在运行对话框中输入"Sfc /scannow"然后点击OK
+
+用sfc /quiet把wfc屏蔽掉就Ok了
+扫描工具SFC
+
+　　此工具会自动扫描所有受保护的系统文件，并用正确的版本取代不正确的版本。在操作系统部分损坏时，可以用来恢复系统。
+
+　　SFC的命令行及其各参数如下：
+　　SFC [/scannow] [/scanonce] [/scanboot] [/cancel] [/enable] 
+[/purgecache] [/cachesize=x] [/quiet]
+　　/SCANNOW：立即扫描所有设置保护的系统文件。
+　　/SCANONCE：下次开机时，只扫描一次所有设置保护的系统文件。
+　　/SCANBOOT：每次启动时，扫描所有设置保护的系统文件。
+　　/CANCEL：取消所有搁置中的设置保护系统文件的扫描。
+　　/QUIET：不提示用户，直接取代所有不正确的文件版本。
+　　/ENABLE：启用Windows文件保护，方便一般操作。
+　　/PURGECACHE：删除文件缓存，并立即扫描所有设有保护的文件系统。
+　　/CACHESIZE=x：设定文件缓存大小。 
+

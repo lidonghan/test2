@@ -1,0 +1,4 @@
+清除地址栏中的记录
+　　问：我在打开某个文件后，地址栏里总是留下该文件的详细路径，当我在地址栏里输入这个文件的上级路径时，就会自动弹出下拉菜单，包括与此相关的各个最近访问过的文件路径，很是烦人。请问能不能将它们清除呢？
+
+　　答：在“运行”中输入regedit打开注册表编辑器，找到HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer，添加一个名为“ClearRecentDocsOnExit”(不包含引号)的十六进制键，值为“01,00,00,00”，重新启动以后即可。每次重新登录都会清理一次。

@@ -1,0 +1,38 @@
+禁止winxp的默认硬盘共享
+　
+禁止winxp的默认硬盘共享
+
+
+编辑一个注册表文件，下面是内容：
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\lanmanserver\parameters]
+"autosharewks"=dword:00000000
+
+然后保存为*.reg，执行后就可以取消win2000和winxp的默认硬盘共享了。
+
+如果系统是服务器版本，文件内容如下：
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\lanmanserver\parameters]
+"AutoShareServer"=dword:00000000
+
+在注册表里的HKEY_LOCAL_MACHINE/System/CurrentControlSet/Services/Lanmanserver/Parameters/修改或添加：AutoShareServer，双字节值为0，就可以关掉盘符共享了。同时，若修改或添加AutoShareWks，双字节值为0，就可以关掉Admin共享了。
+
+
+win2000也是这样设置
+ 
+
+如何判断XP是否已激活
+ 
+
+1、开始→运行，在弹出的对话框中输入：oobe/msoobe /a，回车后系统会弹出窗口告诉你系统是 否已经激活。 
+
+2、开始－＞所有程序－＞附件－＞系统工具－＞WINDOWS激活，如果是这样的话，就恭喜你了，已经激活。你不信，可以点最后那个“WINDOWS激活”看一下就明白了。
+ 
+如果是破解/没有激活，在“开始”－＞“所有程序”顶上就看见“WINDOWS激活”了！激活后，此项就隐藏起来了。
+
+
+查看激活用了哪个CD－KEY?！
+
+激活后才想起不知道是哪一个CD－KEY激活了XP，这时你只需运行附件中的“WinXP安装CD-Key的查看小工具.exe”即可查看！

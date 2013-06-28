@@ -1,0 +1,12 @@
+XP轻松实现免激活升级
+
+1.安装D版windows xp 
+2.打开注册表regedit 
+3.找到主键 Hkey_Local_Machine\Software\Microsoft\WindowsNT\CurrentVersion\WPAEvents\ 
+4.删除子键lastWPAEventLoged 
+5.修改子键OOBETimer键值为：ff d5 71 d6 8b 6a 8d 6f d5 33 93 fd
+6.右击注册表中“WPAEvents”键→“权限”→“高级”→“所有者”→你的用户名→“应用”→“确定” 
+7.回到“安全”标签→“高级”→选择列表中的“system”→“编辑” 
+8.把“拒绝”列下的方框全部打勾即可 
+9.“确定”退出 
+重起动发现已激活。这种方法可顺利升级！！！ 

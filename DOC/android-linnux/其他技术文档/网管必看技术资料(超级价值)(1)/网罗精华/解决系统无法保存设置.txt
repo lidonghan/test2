@@ -1,0 +1,5 @@
+系统无法自动保存设置
+　　问：我用的是Windows 2000系统，以前我每次退出系统的时候，系统都会对我的一些设置作自动保存，可是现在不知道什么原因，我退出系统的时候不再自动保存设置了，请问我该如何恢复它的自动保存功能？
+
+　　答：打开注册表表编辑器，删除HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer下面的NoSaveSettings键值，然后重启系统即可。
+

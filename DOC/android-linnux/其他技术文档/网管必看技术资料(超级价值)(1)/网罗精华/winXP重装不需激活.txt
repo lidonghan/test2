@@ -1,0 +1,3 @@
+XP重装需要激活的问题
+
+由于简体中文版的Windows XP采取了激活的反盗版技术，一般重新安装Windows XP必须重新激活。其实，我们在第一次激活后，只要先备份好Windows下面的System32子目录中的Wpa.dll文件。以后重新安装Windows XP后，只需要复制该文件到Windows下System32子目录中即可激活。如果你不放心，也可以单击“开始”→“运行”，输入如下命令：oobe/msoobe /a来检测你的XP是否已经激活。

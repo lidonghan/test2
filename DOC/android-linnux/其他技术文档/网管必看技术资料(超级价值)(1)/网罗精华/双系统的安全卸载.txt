@@ -1,0 +1,37 @@
+双系统的安全卸载
+
+1、Win2000与Win9x/WinMe
+由于Win2000所采用的内核和以前Win9x/WinMe的都不同，所以无法采用升级操作，但是Win2000提供了良好的双系统并存的功能。想单独删除某一系统而保存另一系统，就不那么简单了，以下将分别介绍。
+
+1.多系统中Win2000的删除
+准备一张Win98的启动盘，然后执行以下的命令。
+
+fdisk/mbr 重写硬盘主引导区。
+
+sys C: 传送Win98的系统文件。
+
+deltree C:＼WINNT 删除Win2000的系统文件存放目录。
+
+deltree C:＼boot*.* 删除以boot开头的所有文件，这里有多系统启动菜单的文件。
+
+deltree C:＼nt*.*删除以nt开头的所有文件。
+
+deltree C:＼hiberfil.sys 删除系统设置存盘文件。
+
+deltree C:＼pagefile.sys 删除页面文件。
+
+完成上面的操作后即可删除Win2000。
+
+2.多系统中Win9x的删除
+首先必须确认你默认启动的是Win2000而是不是Win9x，如果是Win9x需要修改其启动顺序。在Win2000下点击“我的电脑”，打开右键菜单中的“属性”，在“系统特性”中选择“高级”，点击“启动和故障恢复”按钮，在接下来的窗口中就可以修改启动顺序，同时还可以修改启动时间。你可以将启动时间改为0，这样在启动时就不会出现启动菜单选项，而是直接启动Win2000。
+
+然后删除Win9x的系统目录，包括Windows和Program Files目录。如果你是将Win9x和Win2000放在同一个分区，那么只要删除Windows目录，因为在这种情况下Program Files目录在Win2000和Win9x中是公用的。然后删除Win9x引导文件，包括io.sys、msdos.sys、command.com、autoexec.bat和config.sys。
+
+完成以上的操作后，你就恢复了Win2000的单系统。此方法对于WinMe和Win2000的双系统同样试用。
+
+对于单系统和升级系统下Windows的卸载比较简单，而相对来说在多系统下某个系统中的删除复杂一些。所以对于多系统下卸载系统，最好对重要文件进行备份，在错误操作后以提供恢复时使用。
+
+2、XP与ME
+　　问：我的电脑安装的是Windows Me和Windows XP双系统，我现在想卸载D盘的Windows XP系统，应如何卸载？是格式化D盘吗？
+
+　　答：简单的格式化D盘并不能彻底地卸载Windows XP。要彻底细卸载Windows XP，可以直接删除D盘上的Windows(你安装Windows XP的目录)、Program Files和Documents and Settings文件夹(请确保D盘是FAT32格式，否则Windows Me无法访问，必须转换为FAT32格式)，然后到C盘中删除如下文件：ntldr、ntdetect.com、boot.ini、ntbootdd.sys(如果你有SCSI设备的话)和bootfont.bin，最后用Windows Me启动光盘引导计算机，执行命令：a:\sys c:即可彻底卸载Windows XP。

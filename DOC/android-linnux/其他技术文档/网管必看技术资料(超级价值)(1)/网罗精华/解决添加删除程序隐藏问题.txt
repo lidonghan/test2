@@ -1,0 +1,5 @@
+解决“添加删除程序”里面隐藏问题
+
+在C:\Windows\Inf下找到Sysoc.inf文件，用记事本程序打开它，该文件显示了当前已安装程序的部分列表。我们拿MSN Messenger来做个实验，在其中找到这一句“msmsgs=msgrocm.dll,OcEntry,msmsgs.inf,hide,7”，其中“msmsgs”是MSN Messenger的条目名，“hide”这个参数就是控制着程序是否在“添加/删除程序”中显示，我们只要把它删除，变为“msmsgs=msgrocm.dll,OcEntry,msmsgs.inf,,7”，然后重新启动电脑，再次到“添加/删除程序”中，就会看到MSN Messenger了。
+　　根据这个道理，可以把Sysoc.inf文件中包含的“hide”全部删除，这样那些被隐藏的组件就都会在“添加/删除程序”中全部显示出来了。
+

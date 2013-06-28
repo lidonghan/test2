@@ -1,0 +1,14 @@
+关闭小键盘上的NumLock
+　　问：请问怎样解决启动Windows XP进入登录欢迎界面时，自动开启小键盘NumLock的问题。
+
+　　答：首先在BIOS中把NumLock项设为Enable，然后在BIOS中将PnP With OS项亦设为Enable即可。不过注销用户时NumLock小键盘锁是关闭的，要手工打开。
+
+    打开注册表编辑器，找到HKEY_USERS\.DEFAULT\Control Panel\Keyboard，将它下面的InitialKeyboardIndicators的键值改为“2”，退出注册表编辑器，重新启动计算机，你就会发现数字小键盘的灯不再熄灭了。
+
+    另外，仅需要对config.sys文件动点小手术即可达到此目的。设置方法如下：
+　　1.单击“开始”菜单中的“运行”命令，然后在“打开”框中键入“sysedit”，按下回车键，打开“系统配置编辑程序”窗口。
+　　2.单击“Config.sys”标题栏，将它切换为当前编辑窗口，然后在编辑区中键入“NumLock=ON”这一行命令。
+　　3.保存修改并关闭“系统配置编辑程序”窗口。
+
+
+

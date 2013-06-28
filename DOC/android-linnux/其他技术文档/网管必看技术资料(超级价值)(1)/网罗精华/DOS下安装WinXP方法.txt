@@ -1,0 +1,7 @@
+在DOS下安装Win XP
+
+
+    在Win 98的DOS状态下可以安装Win XP，插入Win XP光盘后，首先从开始中进入MS-DOS，然后在MS-DOS下输入“G:\Setup.exe”(G为光驱盘符)即可。
+
+　　如果想从纯DOS下进行安装，可用启动盘启动到DOS状态，安装时首先加载Smartdrv.exe(将Win 98安装光盘或Win 98系统的Windows目录中的Smartdrv.exe拷贝到启动盘上，在DOS提示符下执行Smartdrv.exe即可加载)，然后运行/i386目录下的winnt.exe即可。
+

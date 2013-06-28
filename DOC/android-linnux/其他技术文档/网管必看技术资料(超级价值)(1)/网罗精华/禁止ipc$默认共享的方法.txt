@@ -1,0 +1,28 @@
+禁止ipc$默认共享的方法 
+
+　 
+以下四种方法可以参考一下: 
+A、一种办法是把ipc$和默认共享都删除了。但重起后还会有。这就需要改注册表。 
+1，先把已有的删除 
+net share ipc$ /del 
+net share admin$ /del 
+net share c$ /del 
+…………（有几个删几个） 
+2，禁止建立空连接 
+  首先运行regedit，找到如下主键[HKEY_LOCAL_MACHINESYSTEMCurrentControlSetControlLSA] 
+
+把RestrictAnonymous（DWORD）的键值改为：00000001。 
+  3，禁止自动打开默认共享 
+  
+
+对于server版，找到如下主键[HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesLanmanServerPara 
+
+meters]把AutoShareServer（DWORD）的键值改为:00000000。 
+对于pro版，则是[HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesLanmanServerParameters]把Au 
+
+toShareWks（DWORD）的键值改为:00000000。 
+B、另一种是关闭ipc$和默认共享依赖的服务（不推荐） 
+net stop lanmanserver 
+可能会有提示说，XXX服务也会关闭是否继续。因为还有些次要的服务依赖于lanmanserver。一般情况按y继续就可以了。 
+C、最简单的办法是设置复杂密码，防止通过ipc$穷举密码。但如果你有其他漏洞，ipc$将为进一步入侵提供方便。 
+D、还有一个办法就是装防火墙，或者端口过滤。

@@ -1,0 +1,9 @@
+删除启动选项中的选项
+　　问：在“开始菜单”中的“运行”项中输入“msconfig”之后选择“启动”选项卡，可以看到很多开机时自启动的软件名，可有些我永远也不想开机启动，又不想它出现在此选项卡中，请问能否将它们彻底删除？
+
+　　答：打开注册表编辑器，在HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+HKEY_Current_User\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+HKEY_Current_User\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+以及“开始菜单→程序→启动”中查找你不需要的项并删除。另外也可以使用一些软件清理，例如超级兔子魔法设置等。
+

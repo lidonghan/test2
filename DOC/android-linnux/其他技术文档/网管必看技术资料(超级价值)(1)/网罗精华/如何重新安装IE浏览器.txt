@@ -1,0 +1,4 @@
+重新安装IE浏览器
+　　问：我使用的是Windows XP系统，系统自带的IE浏览器可能出现问题，现在我想重新安装IE，请问如何实现？
+
+　　答：打开注册表编辑器，找到HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Active Setup\Installed Components\{89820200-ECBD-11cf-8B85-00AA005B4383}，把右边的DWOD值IsInstalled从1改成0即可。如果需要重新安装OE，修改HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Active Setup\Installed Components\{44BBA840-CC51-11CF-AAFA-00AA00B6015C}中的上述同样内容就可以了。然后运行IE的安装程序，就可以重新安装了。

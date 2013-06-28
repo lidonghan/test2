@@ -1,0 +1,8 @@
+解决硬盘坏磁道问题
+
+
+问：我在格式化硬盘了出现提示：Recording current bad clusters, writing outfile allocation table. Calculating free space.是不是硬盘有坏簇？请问什么是坏簇和坏磁道？如何测试硬盘坏道是物理坏道还是逻辑坏道？物理坏道可修复吗？
+
+答：硬盘格式化后，从逻辑上可以分为磁道(盘片上的同心圆)、扇区、柱面及簇等，其中簇是保存数据的基本单位。
+
+硬盘的坏道分为物理坏道和逻辑坏道。物理坏道就是硬盘磁片本身受到损伤而导致的坏道。逻辑坏道是指磁片并未损伤，而是由于软件故障、病毒、非正常操作等造成的坏道假象，使得正常的扇区也被标示为坏扇区。据统计，有约40%的返修硬盘实际上没有任何物理故障，而是逻辑坏道在捣乱。因此各个公司也为此推出硬盘故障诊断工具软件：如希捷的SeaTools，昆腾的DPS，IBM的Drive Fitness，三星的Self-diagnostic，西部数据的Data Lifeguard Tools，迈拓的Maxtor Diagnostics Program等，这些工具可以帮助你判断硬盘是物理坏道还是逻辑坏道，因为只有真正的物理坏道软件才会报告。硬盘出现逻辑坏道，可以用以上硬盘厂商提供的Disk management或Norton utilities2000等软件中的工具软件来处理。而物理坏道，从理论上说是无法修复的。

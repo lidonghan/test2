@@ -1,0 +1,4 @@
+在Windows XP中运行DOS程序
+　　问：近日我将系统升级为Windows XP，但是我的一些旧的排版软件需要在DOS下运行，而Windows XP中已经没有纯DOS了，请问应该怎么运行DOS程序呢？
+
+　　答：可以采用start命令来运行。在Windows XP的命令提示符中输入：start/seperate要运行的程序，即可运行相应的DOS程序。其中参数separate的作用是在单独的内存空间启动16位程序，而用参数shared则是在共享的内存空间启动16位程序。当DOS程序运行后我们还可按“Alt+Enter”键在全屏幕与窗口之间进行切换。

@@ -1,0 +1,10 @@
+快速关闭没有响应的程序
+在“开始→运行”框中输入“Regedit”，打开“注册表编辑器”，在HKEY-CURRENT-USER下新建串值Waittokillapptimeout，将其键值设为1000（ms）或更小。
+
+允许强行关机
+进入HEKY-USERS\.DEFAULT\Control Panel\desktop，创建一个字符串“AutoEndTask”，将其键值设为“1”即可。
+
+对于真正的死机，一般只能两次按下 “Ctrl+Alt+Del” 组合键或按主机箱上的“Reset”键（因为消耗资源较少，故前者优先）来重新启动了。
+
+系统死机时自动重新启动
+进入HKEY_LOCAL_MACHINE\System\CurrentControlSet\C-o-n-trol\CrashControl主键，在右边的窗口中修改“AutoReboot”，将其的键值改为“1”。

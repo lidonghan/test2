@@ -1,0 +1,25 @@
+Win XP系统搜索故障以及处理办法点点通 
+ 
+ 
+
+　　故障1：单击资源管理器工具栏上的“搜索”按钮或者按F3，系统无任何响应。
+
+　　解决方法：首先进入C:\Windows\inf文件夹(该文件夹属性为隐藏)，右键单击srchasst.inf文件，选择“安装”菜单，系统会提示你插入Windows XP安装光盘，该操作为重新安装Windows XP的搜索服务组件。对于在搜索中遇到的其它故障，大家也可以将该方法作为最后的救命稻草。
+
+　　故障2：系统提示“A file that is required to run Search Companion cannot be found. You may need to run setup”(找不到搜索组件)。
+
+　　解决方法：造成这个故障的原因是C:\Windows\srchasst\mui\0409下的BAR.XSL、BALLOON.XSL等文件损坏，我们可以首先尝试清空IE临时文件夹，如果问题还未得到解决请安装http://download.microsoft.com/download/whistler/Patch/Q319949/
+
+　　 WXP/EN-US/Q319949_WXP_SP1_x86_ENU.exe(英文版Windows XP用户)，如果你尚未安装SP1，请安装。
+
+　　故障3：系统提示一个黄色带感叹号的三角形警告。
+
+　　解决方法：首先运行“Regedit”命令打开注册表编辑器，依次定位到“[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{e17d4fc0 -5564-11d1-83f2-00a0c90dc849}]”分支，在右边窗口中找到“默认”，将其值修改为“Search Results Folder”。接下来定位到“[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Cabinet State]”，在窗口右边新建一个字符串键，其名为“Search Asst”，讲其值设置为“no”。
+
+　　故障4：“开始”菜单中的“搜索”菜单丢失。
+
+　　解决方法：运行“Regedit”命令打开注册表编辑器，定位到“[HKEY_CURRENT_USER\ Software\Microsoft\Windows\CurrentVersion\Policies\Explorer]，在窗口右边新建一个名为“NoFind”的dword值，将其值设置为00000000(十六进制)。
+ 
+ 
+ 
+

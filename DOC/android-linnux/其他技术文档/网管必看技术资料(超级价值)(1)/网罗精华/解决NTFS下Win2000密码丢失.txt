@@ -1,0 +1,9 @@
+解决NTFS下Win2000密码丢失   
+
+　　第一步，网站下载NTFSDOS Professional软件(下载地址：http://www.winternals.com)，下载后进行安装，安装后执行NTFSDOS Professional Boot Disk Wizard程序，根据向导，会提示依次插入两张软盘，其实能用到的就是第一张。
+
+　　第二步，用Win98软盘或光盘启动盘启动机器到DOS状态，然后插入已经做好的NTFSDOS软盘第一张，执行Ntfspro.exe文件，它会开始自动分析当前硬盘分区表，如果有NTFS分区信息，然后就会依次列出每个NTFS分区的盘符(如果此时有机器的报警声响，请不要惊慌，因为此时可能是在你的某个NTFS分区的根目录有中文的目录存在，在DOS中它可能被认为是非法目录)。
+
+　　第三步，也就是清除Win2000用户口令。在DOS状态进入WinNT所在的盘符，一般为C区。进入%root%\system32\config目录(%root%指WinNT所在的分区路径)，手动删除SAM文件，这样就可以把Win2000所有用户口令清除了。
+
+　　第四步，只需热启动机器，回车就可以正常进入Win2000了。

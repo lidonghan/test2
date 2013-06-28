@@ -1,0 +1,413 @@
+ WINXP优化精髓
+加快开机与关机的速度：
+
+①选“开始\运行”，键入Regedit，展开HKEY_CURRENT_USER\Control Panel\Desktop，将字符串值“HungAppTimeout”的数值更改为200，再将字符串值“WaitToKillAppTimeout”的数值数据更改为1000；
+
+②另在HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control下，将字符串值“HungAppTimeout”的数值数据更改为200，将字符串值“WaitToKillServiceTimeout”的数值数据更改为〔1000〕； 
+
+③使用微软 Bootvis.exe 优化启动速度。我们到微软官方网站先下载 bootVis.exe，然后解压后运行bootvis.exe，之后在Trace下选next boot和driver delays等，此后XP会重新启动，并将记录启动数据产生成BIN的文件。再在“file\open中打开这个文件，在Trace下选Optimize system即可。
+提示：此优化需时颇长，请耐心等待。 
+
+清除注册表内不用的DLL文件：
+
+在〔开始〕\〔运行〕\键入〔Regedit〕\〔HKKEY_LOCAL_MACHINE〕\〔SOFTWARE〕\〔Microsoft〕\〔Windows〕\〔CurrentVersion〕\〔Explorer〕
+增加一个机码〔AlwaysUnloadDLL〕默认值为〔1〕
+如默认值设定为〔0〕则代表停用此功能 
+
+加快宽频连接速度： 
+
+在〔开始〕\〔运行〕\键入〔regedit〕\在〔HKEY_LOCAL_MACHINE〕\〔SOFTWARE〕\〔Policies〕\〔Microsoft〕 \〔Windows〕
+增加一个名为〔Psched〕的机码
+在〔Psched〕右面窗口增加一个 Dword 值〔NonBestEffortLimit〕数值数据为〔0〕 
+『仅适用用 Windows XP 家用版本』
+
+加快菜单显示速度：
+
+在〔开始〕\〔运行〕\键入〔Regedit〕\〔HKEY_CURRENT_USER〕\〔Control Panel〕\〔Desktop〕\将字符串值〔MenuShowDelay〕的数值数据更改为〔０〕
+调整后如觉得菜单显示速度太快而不适应者可将〔MenuShowDelay〕的数值数据更改为〔200〕
+重新启动生效 。 
+
+加快自动更新率：
+
+在〔开始〕\〔运行〕\键入〔Regedit〕\〔HKEY_LOCAL_MACHINE〕\〔System〕\〔CurrentControlSet〕\〔Control〕\〔Update〕\将 Dword〔UpdateMode〕的数值数据更改为〔０〕。重新启动生效。 
+
+关闭启动时加载不需要的程序：
+
+如开机时有太多的程序要运行会影响开机的速度，先检查哪些些档案会在开机时运行
+在〔开始〕\〔运行〕\键入〔msconfig〕\选〔启动〕
+在启动内的程序是代表开机时要运行的程序，如需暂时停止运行某些程序便取消在〔□〕的〔X〕符号便可，如想恢复开机时运行此程序在〔□〕内加回〔X〕符号便可。
+
+停用不需要的服务： 
+在〔开始〕\〔运行〕\键入〔services.msc〕打开服务窗口
+检查右边窗口将不需要的服务在〔启动类型〕内选〔已禁止〕；再在〔服务状态〕中选〔停用〕 
+
+善用 CPU 的 L2 Cache 加快整体效能： 
+
+在〔开始〕\〔运行〕\键入〔Regedit〕\〔HKEY_LOCAL_MACHINE〕\〔SYSTEM〕\〔CurrentControlSet〕\〔Control〕\〔SessionManager〕\在〔MemoryManagement〕的右边窗口将〔SecondLevelDataCache〕的数值数据更改为与 CPU L2 Cache 相同的十进制数值
+例：P4 1.6G 的 L2 Cache 为 256Kb，数值数据更改为十进制数值 256
+有关 L2 Cache 的数值并非如某些不负责任的网页乱抄过来，例如 P4 1.6G 的 L2 Cache 为 256Kb，但 P4 1.6GA 的 L2 Cache 为 512Kb
+读者可以通过网络查询到有关 CPU 的 L2 Cache 的资料。
+
+在启动计算机时运行 Defrag 程序 ：
+
+在〔开始〕\〔运行〕\键入〔Regedit〕\〔HKEY_LOCAL_MACHINE〕\〔SOFTWARE〕\〔Microsoft〕\〔Dfrg〕\〔BootOptimizefunction 〕
+将字符串值〔Enable〕设定为〔Y〕等于开启，而设定为〔N〕等于关闭。
+
+减少多重启动时等待时间： 
+
+方法一：用 Notepad 打开在 C:\　目录下的 boot.ini 档案，将内容〔timeout〕的设定值由预设的 30 (秒) 改为要求等待的秒数数字，存盘。
+方法二：也可以通过〔开始〕\〔运行〕\键入〔msconfig〕，打开boot.ini 选项，进行秒数的修改。
+方法三：右键点击“我的电脑”，选择属性\高级\启动和故障恢复\设置，在此修改启动等待时间。
+
+关闭 XP 内设的烧碟功能： 
+
+如果不打算使用此功能可将其关闭，可加快使用 Nero 烧录软件的速度，因为Windows XP 的烧录系统由 Roxio 公司提供 (即与 Easy Cd Creator 同公司)。
+在〔控制面板〕\〔管理工具〕\〔服务〕\在右边窗口选〔IMAPI CD-Burning COM Service〕\〔启动类型〕\选〔已停用〕 
+
+关机时自动关闭停止响应程序：
+
+在〔开始〕\〔运行〕\键入〔Regedit〕\〔HKEY_USERS〕\〔.DEFAULT〕\〔Control Panel〕\在〔Desktop〕右面窗口将〔AutoEndTasks〕的数值资料改为〔1〕
+注销或重新启动即可。
+
+移除Windows Messenger：
+
+先用 Wordpad 打开 X:\WINDOWS\inf 下的 sysoc.inf 档案
+X=（XP所在的磁盘区）
+将内容〔msmsgs=msgrocm.dll,OcEntry,msmsgs.inf,hide,7〕
+更改为〔msmsgs=msgrocm.dll,OcEntry,msmsgs.inf,7〕
+存档及退出 
+然后在〔控制面板〕\〔添加或删除程序〕\〔添加／删除 Windows 组件〕\不选〔Windows Messenger〕\〔下一步〕\〔完成〕后便成功移除。
+
+停止“磁盘空间不足”的通知 ：
+
+当磁盘驱动器的容量少于 200MB 时 Windows XP 便会发出“磁盘空间不足”的通知
+如需停止此功能,可按下面程序更改登录文件
+在〔开始〕\〔运行〕\键入〔Regedit〕\〔HKEY_LOCAL_MACHINE〕\〔Software〕\〔Microsoft〕\〔Windows〕\〔CurrentVersion〕\在〔Policies〕下增加一个机码名〔Explorer〕(如果已有便不用增加)\在〔Explorer〕增加一个 DWORD 值〔NoLowDiskSpaceChecks〕
+数值数据为〔1〕= 停止通知，值数据为〔0〕= 默认值启动通知
+
+关闭 windows 自动更新 ：
+
+鼠标右点〔我的电脑〕\〔内容〕\〔自动更新〕
+选“关闭自动更新，我要手动更新我的计算机” 
+
+关闭启动时窗口标志画面：
+
+在〔开始〕\〔运行〕\键入〔msconfig〕\选〔boot.ini〕
+然后在〔启动选项〕内选〔NOGUIBOOT]
+重新开机便没有了窗口标志的画面 
+
+使用 Windows Media Player 9 播放 DVD 盘：
+在〔开始〕\〔运行〕\键入〔DVDPlay〕便会出现 Windows Media Player
+按播放 VCD 型式操作便可播放 DVD 了，当然你一定要有 DVDRom 装置
+如果还出现问题，在〔开始〕\〔运行〕\键入〔regedit〕\选〔HKEY_CURRENT_USER〕
+\〔Software〕\〔Microsoft〕\〔MediaPlayer〕\〔Player〕\在〔Settings〕右边窗口
+增加一个字符串值〔EnableDVDUI〕数值数据为〔yes〕 
+
+关闭自动重新启动功能：
+
+当 Windows XP 遇到严重问题时便会突然重新开机，按下更改可以取消此功能
+在〔开始〕\〔运行〕\键入〔regedit〕\选〔HKEY_LOCAL_MACHINE〕\〔SYSTEM〕
+\〔CurrentControlSet〕\〔Control〕\〔CrashControl〕\将〔AutoReboot〕dword 值更改为〔0〕重新开机生效 
+
+移除共享文档： 
+
+除正常〔我的文档〕及〔共享文档夹〕外，每个用户都会有一个独立的活页夹，
+如下设定则只会保留我的活页夹，其余的不会显示出来
+在〔开始〕\〔运行〕\键入〔regedit〕\选〔HKEY_LOCAL_MACHINE〕\〔SOFTWARE〕
+\〔Microsoft〕\〔Windows〕\〔CurrentVersion〕\〔Explorer〕\〔MyComputer〕\〔NameSpace〕\在〔DelegateFolders〕下删除〔{59031a47-3f72-44a7-89c5-5595fe6b30ee}〕机码 
+
+取消 IE 自动缩图功能： 
+
+Internet Explorer 6 在浏览图片如大出屏幕，图片便会自动缩小如需取消这功能可按如下修改：
+在〔开始〕\〔运行〕\键入〔regedit〕\〔HKEY_CURRENT_USER〕\〔Software〕\〔Microsoft〕\〔Internet Explorer〕\在〔Main〕增加一个字符串值〔Enable AutoImageResize〕数据数值为〔NO〕
+
+让 IE6 可以同时下载超过两个档案： 
+Internet Explorer 6 同时最多只可以下载两个档案，
+按下修改可同时下载多达十个档案
+在〔开始〕\〔运行〕\键入〔regedit〕\〔HKEY_CURRENT_USER〕\〔\Software〕\〔Microsoft〕\〔Windows〕\〔CurrentVersion〕\〔InternetSettings〕
+在右边窗口增加下列两个〔Dword〕值
+〔MaxConnectionsPer1_0Server〕数值资料为〔0000000a〕即十进制〔10〕
+〔MaxConnectionsPerServer〕数值资料为〔0000000a〕即十进制〔10〕
+重新启动计算机生效
+ [转帖]我的WinXP优化之路［推荐］
+转贴］我的WinXP优化之路［推荐］
+
+为了达到这个目的，我们主要从四个方面入手： 
+1、减少磁盘空间占用 
+2、终止不常用的系统服务 
+3、安全问题 
+4、另外一些技巧 
+首先问一下，你是不是很想激活XP，不。。。准确的说你是不是想在ms的站上能够升级。如果答案是肯定的话，那我们就先来探讨一下安装的问题，目前流行的V4、V5、V6版本我还是比较推荐的，尤其是V5和V6这两个。安装的过程中有个序列号的问题，我建议你先在机子上算好，然后用这个序列号安装，通常这样安装的XP都可以到MS的站点自由更新。 
+如果你是已经安装好的XP了，但用的序列号是里到处流传人人都用的那些，也没关系，我们后面会说用sysrep来重新封装的时候会解决序列号更换的问题。 
+
+我假设你已经安装完XP了，come on baby ~~ 
+
+一、瘦身行动 
+
+1、在各种软硬件安装妥当之后，其实XP需要更新文件的时候就很少了。删除系统备份文件吧：开始→运行→sfc.exe /purgecache 近3xxM。 
+
+2、删除驱动备份： %windows%\driver cache\i386目录下的driver.cab文件，通常这个文件是76M。 
+
+3、偶没有看help的习惯，所以保留着%windows%\help目录下的东西对我来说是一种伤害，呵呵。。。都干掉，近4xM。 
+
+4、一会在升级完成后你还会发现%windows%\多了许多类似$NtUninstallQ311889$这些目录，都干掉吧，1x-3xM。 
+
+5、正好硬盘中还有win2000/server等，所以顺便把pagefile.sys文件都指向一个地方：控制面板→系统→性能—高级→虚拟内存→更改，注意要点“设置”才会生效。 
+
+6、卸载不常用组件：用记事本修改\%windows%\inf\sysoc.inf，用查找/替换功能，在查找框中输入,hide，全部替换为空。这样，就把所有的,hide都去掉了，存盘退出后再运行“添加-删除程序”，就会看见“添加/删除 Windows 组件”中多出不少选项；删除掉游戏啊，码表啊等不用的东西。 
+
+7、刪除\windows\ime下不用的輸入法，8xM。我重新安装了自己用的zrm输入法，赫赫。 
+
+8、如果实在空间紧张，启用NTFS的压缩功能，这样还会少用2x% 的空间，不过我没作。 
+
+9、关了系统还原，这破功能对我这样常下载、测试软件的人来说简直是灾难，用鼠标右健单击桌面上的“我的电脑”，选择“属性”，找到“系统还原”，选择“在所有驱动器上关闭系统还原”呵呵，又可以省空间了。 
+
+10、还有几个文件，挺大的，也没什么用。。。。忘了名字 ：（ ，刚安装的系统可以用查找功能查找大于50M的文件来看看，应该能找到的。 
+
+如果你能按照上面的过程做完，你的原本1.4G的XP，完全可以减少到800以下。 
+
+二、加速计划 
+
+WinXP的启动会有许多影响速度的功能，尽管ms说已经作最优化处理过，但对我们来说还是有许多可定制之处。我一般是这样来做的。 
+
+1、修改注册表的run键，取消那几个不常用的东西，比如Windows Messenger 。启用注册表管理器：开始→运行→Regedit→找到“HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run\MSMSGS” /BACKGROUND 这个键值，右键→删除，世界清静多了，顺便把那几个什么cfmon的都干掉吧。 
+
+2、修改注册表来减少预读取，减少进度条等待时间，效果是进度条跑一圈就进入登录画面了，开始→运行→regedit启动注册表编辑器，找HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters， 有一个键EnablePrefetcher把它的数值改为“1”就可以了。另外不常更换硬件的朋友可以在系统属性中把总线设备上面的设备类型设置为none（无）。 
+
+3、关闭系统属性中的特效，这可是简单有效的提速良方。点击开始→控制面板→系统→高级→性能→设置→在视觉效果中，设置为调整为最佳性能→确定即可。这样桌面就会和win2000很相似的，我还是挺喜欢XP的蓝色窗口，所以在“在窗口和按钮上使用视觉样式”打上勾，这样既能看到漂亮的蓝色界面，又可以加快速度。 
+
+4、我用Windows commadner＋Winrar来管理文件，Win XP的ZIP支持对我而言连鸡肋也不如，因为不管我需不需要，开机系统就打开个zip支持，本来就闲少的系统资源又少了一分，点击开始→运行，敲入：“regsvr32 /u zipfldr.dll”双引号中间的，然后回车确认即可，成功的标志是出现个提示窗口，内容大致为：zipfldr.dll中的Dll UnrgisterServer成功。 
+
+5、据说XP的一个系统服务Qos，这个调度要占用一定的网络带宽，像我这样的一毛不拔的人是无法忍受的，去掉方法是：开始菜单→运行→键入 gpedit.msc ，出现“组策略”窗口， 展开 "管理模板”→“网络” ， 展开 "QoS 数据包调度程序"， 在右边窗右键单击“限制可保留带宽" ，在属性中的“设置”中有“限制可保留带宽" ，选择“已禁用”，确定即可。当上述修改完成并应用后，用户在网络连接的属性对话框内的一般属性标签栏中如果能够看到"QoS Packet Scheduler（QoS 数据包调度程序）"。说明修改成功，否则说明修改失败，顺便把网络属性中的那个Qos 协议也一起干掉（卸载）吧。 
+
+6、快速浏览局域网络的共享 
+通常情况下，Windows XP在连接其它计算机时，会全面检查对方机子上所有预定的任务，这个检查会让你等上30秒钟或更多时间。去掉的方法是开始→运行→Regedit→在注册表中找到HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\Current Version\Explorer\RemoteComputer\NameSpace。在此键值下，会有个{ D6277990-4C6A-11CF-8D87-00AA0060F5BF }键，把它删掉后，重新启动计算机，Windows XP就不再检查预定任务了，hoho~~~ ，速度明显提高啦！ 
+
+7、关掉调试器Dr. Watson 
+我好像从win95年代开始一次也没用过这东西，可以这样取消：打开册表，找到HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AeDebug子键分支，双击在它下面的Auto键值名称，将其“数值数据”改为0，最后按F5刷新使设置生效，这样就取消它的运行了。沿用这个思路，我们可以把所有具备调试功能的选项取消，比如蓝屏时出现的memory.dmp，在“我的电脑→属性→高级→设置→写入调试信息→选择无”等等。 
+
+
+8、被我终止的服务列表以及相关说明 
+
+1)alerter 错误警报 
+2)automatic updates windows 自动更新 
+3)background intelligent transfer service 微软说使用空闲的网络带宽传数据 
+4)clipbook 与远程电脑来共享剪贴板内容，我看还是免了吧 
+5)Computer browser　说什么要维护网络更新列表 
+6)DHCP client 我不需要这东西 
+7)Distributed link tracking client 保持局域网连接更新等信息，偶很少用局域网，这东西占用４M左右内存。 
+8)Distributed Transaction coordinator 协调xxx，和上面的差不多 
+9)DNS Client 我不需要这东西 
+10)Error reporting service 错误报告 
+11)Event Log 系统日志纪录 
+12)Fast user switching compatibility 用户切换 
+13)help and support 帮助 
+14)Human interface device access 据说是智能设备。。。 
+15)IMAPI CD-burning COM service　偶不用这个刻碟 
+16)Indexing service 索引，索引什么呢？ 
+17)Internet Connection Firewall(ICF) ICF防火墙 
+18)IPSEC Services 这个我不懂，你想知道问Quack去 
+19)Logical Disk manager administrative service 配置磁盘 
+20)messenger 好像net send 等东西用的就是这个功能 
+21)MS software shadow copy provider 卷复制备份的 
+22)Net Logon 我可不想让黑客远程登录进来，关！ 
+23)Netmeeting remote desktop sharing 我不用netmeeting 
+24)Network DDE　 动态数据交换传输 
+25)Network DDE DSDM　和上面差不多 
+26)Network Location Awareness 关，我的机子不作共享 
+27)NTLM Security support provider－telnet　呵呵，关！ 
+28)Performance logs and alert 将系统状态写日志或发警告 
+29)Portable media serial number 关！ 
+30)Print Spooler 打印机，不幸的是我的机子不连接Print ~ 
+31) QoS RSVP 关！ 
+32)Remote desktop help session manager 远程帮助服务 
+33)remote Procedure Call LOCATOR 管理RPC 
+34)remote registry 远程管理注册表 
+35)removable storage　 
+36)routing and remote access 我干脆禁用了它 
+37)security accounts manager 我的系统只是一个客户系统，不用iis。 
+38)smart card 
+39)smart card helper 关！！！ 
+40)SSDP Discovery service 我用不到这个 
+41)system event notification 如果是服务器肯定要记录的 
+42)system restore service 系统还原服务 
+43)task scheduler windows 计划服务 
+44)Telephony 拨号服务，我不拨号还不行吗？ 
+45)telnet 
+46)terminal services 终端服务 
+47)uninterruptible power supply UPS，我没有呀 
+48)universal plug and play device host 太先进了点，用不到 
+49)upload manager 关了也能传输文件的 
+50)volume shadow copy 又是备份，晕 
+51)webclient 没用过 
+52)Windows Installer ＭＳＩ服务，我一直关着。 
+53)windows image acquisition (WIA) 数码设备用的 
+54)windows management instrumentation driver extensions 关了 
+55)windows time 时间服务 
+56)wireless zero configuration 无线网络，偶用不到的 
+57)WMI perfromance adapter 关！ 
+
+这里面的一些服务是刚开始就是关的，但我忘了，所以只好把现在系统中关闭的服务基本都列了出来。你根据自己的情况酌情处理吧。 
+
+三、我安全吗 
+
+多了不谈，基本的共享还是得关的： 
+
+修改注册表为以下两个样式： 
+去除共享 
+—————————————————————— 
+Windows Registry Editor Version 5.00 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\lanmanserver\parameters] 
+"AutoShareServer"=dword:00000000 
+"AutoSharewks"=dword:00000000 
+—————————————————————— 
+去除IPC$管理 
+—————————————————————— 
+Windows Registry Editor Version 5.00 
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa] 
+"restrictanonymous"=dword:00000001 
+—————————————————————— 
+或者将上面两个保存成个.REG文件，然后双击导入就可以了。 
+
+
+顺便把不要脸的的3721也屏蔽，在hosts文件中加入： 
+
+127.0.0.1 cnsmin.3721.com 
+127.0.0.1 http://www.3721.net 
+
+
+四、其他技巧 
+
+1、给鼠标右键增加个复制到.../移动到...功能 
+————————————————————— 
+Windows Registry Editor Version 5.00 
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AllFilesystemObjects\shellex] 
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AllFilesystemObjects\shellex\ContextMenuHandlers] 
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AllFilesystemObjects\shellex\ContextMenuHandlers\Copy To] 
+@="{ C2FBB630-2971-11D1-A18C-00C04FD75D13 }" 
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Classes\AllFilesystemObjects\shellex\ContextMenuHandlers\Move To] 
+@="{ C2FBB631-2971-11D1-A18C-00C04FD75D13 }" 
+———————————————————————— 
+将上面内容保存成add.reg文件，然后双击导入就可以了。 
+
+2、关了错误报告，KAO ！这东西搞得我像个微软免费的测试员似的：点击控制面板---->系统---->高级---->右下角--->错误报告---->禁用错误汇报——>确定！ 
+3、取消分组显示：右键单击任务栏的空白区域，在弹出的菜单中选择“属性”，在弹出的窗口中，取消“分组相似任务栏按钮”前面的对钩，确定就可以了。 
+4、找回经典的登录窗口，WinXP默认的登录界面虽然漂亮，但如果你想用一个列表中没有的用户登录，你会发现无从下手，改回经典窗口的方法是：点击“开始”→“控制面板”→“用户账户”→“更改用户登录或注销的方式”→把“使用欢迎屏幕”前面的对钩取消，最后点“应用选项”就OK啦。 
+5、将自己最常用的输入法设置一个快捷键：点击“开始”→“控制面板”→“区域和语言选项”→在弹出的窗口中选择“语言”→“详细信息”→“键设置”在弹出的窗口中找到自己用的输入法，点“更改按键顺序”→在这里选一个快捷键就可以了。 
+6、关闭计算机时自动结束不响应的任务，注册表：HKEY_CURRENT_USER\Control Panel\Desktop 中的“AugoEndTasks”的键值改为“1” 
+7、关闭自动更新：右键单击“我的电脑”，点击属性，点击“自动更新”，在“通知设置”一栏选择“关闭自动更新。我将手动更新计算机”一项。 
+8、减少开机磁盘扫描等待时间，开始→运行，键入“chkntfs/t:0” 
+
+
+然后连接到ms站点顺便升级一次就算优化基本完成，对于XP而言，可以采用许多内部命令来看看优化情况，比如tasklist.exe /svc 可以查看系统服务实际使用情况。 
+优化一个系统，挺麻烦的。所以我们把他保存起来，我们用Ghost生成.GHO文件，这样就可以拿给别人炫耀一下啦，在Ghost之前先要作一个事情，清除系统硬件、注册等信息，否则克隆到不同的机子上将无法启动，在Winxp安装盘上找Deploy.cab 中的sysprep.exe文件。 
+执行sysprep.exe，选择“重新封装”，下面的标记中可以选择“已提前激活”，还可以选择封装完成后是关机还是重新启动。封装完成后，我们再用带有Ghost的系统盘启动，用Ghost来生成备份.GHO镜像，备份完成！ 
+在执行封装后，重新开机，XP会让我们输入序列号，文中开头所提到的换序列号的办法就是这样换。
+
+ Windows XP最新应用技巧大荟萃
+                          Windows XP最新应用技巧大荟萃 
+1.恢复EXE文件关联 
+　　EXE文件关联出错非常的麻烦， 
+因为这种情况的出现多是由于病毒引起的，而杀毒软件的主文件都是EXE文件，既然EXE文件关联出错，又怎能运行得了杀毒软件呢？还好XP提供了安全模式下的命令行工具供我们使用，可以利用命令行工具来解决这个问题。 
+　　在安全模式下输入：assoc<空格>.exe=exefile<回车>，屏幕上将显示“.exe=exefile”。现在关闭命令提示符窗口，按Ctrl+Alt+Del组合键调出“Windows安全”窗口，按“关机”按钮后选择“重新启动”选项，按正常模式启动Windows后，所有的EXE文件都能正常运行了！ 
+3.更改Windows XP序列号 
+　　在Windows XP安装完毕以后， 
+可能由于某些原因你又想在已经安装完毕的Windows XP上更改序列号，该怎么办呢？使用激活向导可以满足你的要求。开始之前，强烈建议你在修改之前作一个系统还原点，以免误操作引起不必要的麻烦。 
+
+　　点击“开始”→“运行”，输入regedit后回车，打开注册表编辑器，定位到HKEY_LOCAL_MACHINE＼Software＼Microsoft＼WindowsNT＼Current Version＼WPAEvents，在右边右键单击OOBETimer，然后选择修改，至少修改一个字节，确定保存。 
+
+　　点击“开始”→“运行”，输入%systemroot%＼system32＼oobe＼msoobe.exe /a，选择通过电话激活以后点击“下一步”，点击修改序列号，输入新的序列号以后选择“更新”，如果退回到前一个画面，那么选择稍后激活，并重新启动，反复前面的步骤直到修改成功为止，重新激活。点击确定，安装SP1。 
+
+　　如果你安装SP1以后不能重新启动，那么启动的时候按F8，选择使用“最后一次正确的配置”，然后重复以上流程。本方法适用于Windows XP Professional。 
+
+　　4.将EFS选项添加至快捷菜单 
+
+　　Windows XP所配备的加密文件系统(EFS)，可帮助您针对存储在NTFS磁盘卷上的文件和文件夹执行加密操作。如果您已将这个文件加密/解密选项添加至快捷菜单，那么，当用户右键单击某一存储于NTFS磁盘卷上的文件或文件夹时，加密或解密选项便会出现在随后弹出的快捷菜单上。请注意Windows XP Home Edition(家用版)并未提供EFS特性。 
+
+　　如欲将EFS选项添加至快捷菜单，请依次执行下列操作步骤：在“运行”对话框内输入regedit，展开注册表至下列子键：HKEY_LOCAL_MACHINE＼SOFTWARE＼Microsoft＼Windows＼CurrentVersion＼Exporer＼Advanced，在“编辑”菜单上指向“新建”，并单击“DWORD值”，输入EncryptionContextMenu为变量名，并将该变量赋值为1。为确保对注册表进行修改，应在自己的计算机上拥有管理员帐号。 
+
+　　5.XP选程桌面漏洞解决办法 
+
+　　Windows XP提供了远程桌面功能，目前被证实存在设计缺陷，可能导致攻击者得到系统远程桌面的账户信息，有助于其进一步攻击。当连接建立的时候，用Windows XP远程桌面把账户名以明文发送给连接它的客户端。发送的账户名不一定是远端主机的用户账号，而是最常被客户端使用的账户名，网络上的嗅探程序可能会捕获到这些账户信息。 
+
+　　解决方法：到微软主页下载相应的补丁程序，并暂时停止远程桌面的使用，方法是：右键单击“我的电脑”，选择“属性”，在弹出的窗口中，选“远程”标签，勾掉“允许用户远程连接到这台计算机”复选框前的钩，点“确定”即可。 
+
+　　6.制作密码重设盘 
+
+　　密码在Windows XP里面是很重要的，但是如果你忘记了没法登陆怎么办？如果你创建了“密码重设盘”，问题就会迎刃而解。在“控制面板”中打开用户帐户，单击您的帐户名，在位于窗口左侧的“相关任务”下面，单击“防止忘记密码”，选择下一步，提示需要一张磁盘，准备一张空白的磁盘插入软驱里面，继续下一步，出现下面输入当前账户的密码以后（图4），按“下一步”即可开始创建，如果你以后忘记了密码，在出现欢迎屏幕时，单击用户名，然后键入密码。如果忘记了密码，则会显示“您是否忘记了自己的密码？”消息，单击“使用密码重设盘”可启动“密码重设向导”，按照“密码重设向导”中的指示，创建新密码，使用新密码登录，然后将密码重设盘收藏到安全地方，以备将来需要重设密码时使用，不必制作新的密码重设盘。 
+
+　7.解决因DirectX产生的错误 
+
+　　如果你在电脑操作中频繁收到DirectDraw错误消息， 
+则可尝试应用“DirectX诊断工具”解决问题。运行开始菜单中的“附件”→“系统工具”→“系统信息”，在显示的程序界面中，点击菜单栏上的“工具”→“DirectX诊断工具”(图5)，其后，在弹出窗口中切换到“显示”标签页，在此查看“DirectX功能”项目，分别测试当前设备上的DircetDraw及Direct3D，若有问题则禁用此项功能。 
+
+　8.使用增加的磁盘工具 
+
+　　在XP中大家熟悉的ScanDisk没有了，许多人对此很不适应，而且觉得很奇怪，其实，Windows XP中已经包含一个增强了的磁盘工具：Check Disk。因此ScanDisk也没必要存在了。如果想使用Check Disk：打开我的电脑，右键点击一个驱动器，选择“属性”。在“工具”选项卡上，在检查错误下，点击“现在检查”。如果想从命令行检查磁盘分区，可以用chkdsk c:这样的格式。 
+
+　　9.忘记登陆口令的解决办法 
+
+　　XP对用户安全性的审核即是非常严格的，要是你忘记了设置的口令，可别以为能够像Windows98那样选择“取消”就可以进入系统，这一点相信安装过Windows XP的朋友是很清楚的。由于没有登陆口令，无法进入系统，许多朋友无奈之下选择了重新安装Windows XP的办法，但这种方法既繁琐又费时费力，其实不必那么麻烦的。 
+
+　　大家知道，Windows 2000/XP中对用户帐户的安全管理使用了安全帐号管理器(Security Account Manager,SAM)的机制，安全帐号管理器对帐号的管理是通过安全标识进行的，安全标识在帐号创建时就同时创建，一旦帐号被删除，安全标识也同时被删除。安全标识是唯一的，即使是相同的用户名，在每次创建时获得的安全标识都时完全不同的。因此，一旦某个帐号被删除，它的安全标识就不再存在了，即使用相同的用户名重建帐号，也会被赋予不同的安全标识，不会保留原来的权限。 
+
+　　安全账号管理器的具体表现就是%SystemRoot%＼system32＼config＼sam文件。SAM文件是Windows NT/2000/XP的用户帐户数据库，所有用户的登录名及口令等相关信息都会保存在这个文件中。知道了这些我们的解决办法也产生了：在系统启动前，插入启动盘，进入C:＼WINNT＼System3＼Config＼，用ren命令将SAM文件改名，或用del命令将SAM文件删除，重启电脑即可。改名或删除SAM文件以后，试用Administrator登录，密码为空，成功了。 
+
+　　10.字体安装的优化 
+
+　　有些朋友需要安装各种不同的字体，但是有些字体本身很大，特别是中文字体，一般在10M左右，一旦安装过多的字体，会使系统盘臃肿不堪，其实，从Win98到WinXP，都可以在安装的时候做一点优化，效果就是不再把新字体拷贝到系统盘。 
+
+　　以WinXP为例，我们在一个空白的驱动器上建立一个目录：NewFonts(名字、驱动器名字任意定)，然后把全部需要安装的字体放到这个目录里面，然后在“开始”→“运行”里面输入fonts，打开字体目录，依次打开“文件”→“安装新字体”，在出现的对话框里面找到D:＼NewFonts这个目录，然后去掉“将字体复制到Fonts文件夹”前面的“√”(图6)，最后选中要安装的字体，确定即可。 
+
+11.声音提示切换键 
+
+　　在你在进行大量英文/汉字输入的过程中， 
+大概经常会遇到误按切换键而导致输入频繁出错，从而降低工作效率的情况(特别是快速盲打)。如果我们为切换键设置了声音提示，就可有效地避免这一问题。在“控制面板”中，双击“辅助功能选项”图标，在弹出对话框中查看"键盘"标签页，在此勾选“切换键”项目中的“使用切换键”复选框，最后点击“确定”使设置升效(图7)。 
+
+　12.时间校正自动化 
+
+　　要是Win XP系统下的时钟突然不准了怎么办？相信大多数人都会选用手工方式来重新将时间校准；可惜，无论我们怎么细心，用手工方式总是无法实现精确校时的。要想精确对时钟进行校时的话，我们可以利用下面的方法来实现： 
+
+　　直接用鼠标双击系统任务栏托盘区中的系统时钟图标，打开“Internet时间”标签页面，在其中选择一台标准的时间服务器，单击确定按钮后，系统自动连接到因特网上，并自动比较计算机内的系统时钟与指定服务器的时钟，要是发现不准确的话就可以自动调整了。不过要想调整精确的话，必须确保自己的系统没有安装防火墙。 
+
+　　13.XP也可磁盘扫描 
+
+　　不知何数，在Windows XP之中没有为我们提供磁盘扫描的功能，这给我们对磁盘整理带来了一些不便。为了解决这个，经过潜心研究终于找出了解决方法。 
+
+　　在“我的电脑”中右击想进行扫描检测的分区，打开其属性对话框，然后切换到“工具”标签，在“查错”区域点击“开始检查”按钮，在随后打开的对话框中选中“自动修复文件系统错误”、“扫描并试图恢复坏扇区”两个选项(图8)，然后点击“开始”按钮即可。 
+
+　14.禁止使用IE6下载文件 
+
+　　有些时候我们需要禁止IE下载文件功能，但是一直苦于没有办法使用系统的设置，其实如果在注册表中稍作修改的话就可以满足大家的要求了。打开注册表编辑器，找到HKEY_CURRENT_USER＼Software＼Microsoft＼Windows＼CurrentVersion＼Internet Settings＼Zones＼3，然后在右边找到1803这个Dword值，双击修改为3即可。重新启动IE看看还能不能够下载的？如果要取消限制的话，只需要还原Dword值为0即可。 
+
+　　15.利用光盘检测系统兼容性 
+
+　　Windows XP作为目前个人安装使用的最新操作系统，在一些老爷机上经常会碰到安装过程出现不兼容的情况，使得安装过程到了一半就被迫结束。为了避免这种情况的发生，我们可以在安装Windows XP之前，借助其安装光盘来对系统的兼容性进行一些检测。 
+
+　　将安装光盘放入光驱，一般都会自动打开欢迎使用界面(注：如果禁止光盘自动运行，我们可以执行光盘中的SETUP.EXE命令，同样可以打开)点击其界面上的最后一项“检查系统兼容性”然后点击“自动检查我的系统”，这样待上一会就会显示检查结果，汇报不兼容的项目，要想安装使用Windows XP就得先解决好这些不兼容的项目才行，免得中途被迫停止。 
+
+16.给Windows XP找回纯DOS 
+
+　　有时我们不得不使用一些在纯DOS模式下工作的程序，但是在Windows XP中已经找不到纯DOS了，难道我们非得放弃这些在纯DOS下运行的程序吗？当然不是！利用下面的办法就可以让你在Windows XP中进入纯DOS模式。 
+
+　　第一种方法：利用Win98 
+
+　　在我们安装XP操作系统前，先用Windows 98启动盘启动系统，并通过sys c:命令向c盘传送系统。并将常用的DOS命令拷贝到硬盘中，然后按常规方法安装XP，当安装成功后，在启动菜单的默认菜单"Microsoft Windows XP"下会新增一个“Microsoft Windows”菜单项，选中此菜单项后，由于系统中没有安装Windows98系统，所以此时计算机就会自动转到DOS系统下，而且还是实模式的，这样就达到了我们的目的。 
+
+　　第二种方法：采用start命令 
+
+　　在Windows XP的命令解释符中输入：start/seperate要运行的程序，即可运行相应的DOS程序。其中参数separate的作用是在单独的内存空间启动16位程序，而用参数shared则是在共享的内存空间启动16位程序。当DOS程序运行后我们还可按Alt+Enter键在全屏幕与窗口之间进行切换。 
+
+　　第三种方法：利用工具软件 
+
+　　我们还可以使用一个小工具pqvf.exe来达到目的，该软件下载的地址是61.234.226.248/pqvf.exe。该软件是部分网友分析了PQ Magic的相关文件，并提取了部分文件制作的软件，可以让那些Windows XP用户迅速引导到纯DOS下，重新启动后又可以正常使用Windows XP启动。 
+
+　　下载后的pqvf.exe文件是一个自解压程序，解压后的文件名字和作用如下：MBR.dat和restrmbr.exe这两个文件的主要作用是用来恢复硬盘的主引导记录的，作用与执行FDISK/mbr命令一样，可以清除主引导扇区而不改变分区表结构。Vfinst9x.exe用于在Windows 9x下启动纯DOS界面，VfinstNT.exe用于在Windows XP下启动纯DOS界面。pqvf.vfd中则包含有启动的软磁盘映像文件。 
+
+　　具体方法是：直接运行VfinstNT.exe,vfinstNT.exe文件，它们会修改硬盘主引导记录，然后Windows XP会自动重新启动，重启动后你看到的盘符将是A:。敲入ver命令可以查看当前的DOS版本，显示的是“Windows 98(version 4.10.2222)”，看来已是纯DOS了！而且像himem.sys.emm386.exe、光驱驱动和鼠标驱动程序这样的必备驱动也安装了，并且还自动装上一个简单的汉字系统，完全可以应付一般的DOS应用了。如果想回到Windows XP界面，只要重新启动计算机就可以了。 
+

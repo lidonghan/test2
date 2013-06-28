@@ -1,0 +1,5 @@
+如何自动重启 
+
+　　当Win 2000出现系统崩溃时，和Win 9X一样也会出现蓝屏，通常我们需要按下Reset键进行重启，不过，通过修改注册表我们可以设置自动重启。 　　
+　　打开注册表编辑器，然后进入主键［HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\CrashControl］，将其中的键值：“AutoReboot”设置为“1” 。 　
+　　这样当下次系统崩溃後，就会自动重启。

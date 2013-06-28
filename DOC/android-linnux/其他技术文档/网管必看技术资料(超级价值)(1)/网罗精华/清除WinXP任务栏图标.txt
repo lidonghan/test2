@@ -1,0 +1,3 @@
+巧妙清除Windows XP任务栏的隐藏图标记录
+
+在Windows XP中的自动隐藏不活动的图标，可以解决系统托盘区占用过多的任务栏空间。可时间长了，右击任务栏空白处选择“属性”，在 “任务栏”选项中点击“自定义”按钮，会在“过去的项目”栏里看到很多历史记录，删除这些项目的方法是：打开注册表，找到“HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ Explorer\TrayNotify”，其中“IconStreams”项存储着“当前项目”而“PastIconsStream”项存储着“过去的项目”，将“TrayNotify”项删除，按Ctrl+Alt+Del组合键调出“Windows任务管理器”，单击进程选项卡，选择explorer.exe，结束进程。之后在“Windows任务管理器”中选“文件”→“新建任务”，在“创建新任务”中输入explorer.exe即可。

@@ -1,0 +1,73 @@
+解开被锁定的.reg与.inf文件
+
+　　一、如果注册表编辑器未被锁定，可进入注册表编辑器，手动修改如下键值
+　　找到[HKEY_LOCAL_MACHINE\Softe\CLASSES\.reg]，将右边窗口中的“默认”字符串的值修改为“REGFILE”；
+
+　　找到[HKEY_LOCAL_MACHINE\Software\CLASSES\.inf]，将右边窗口中的“默认”字符串的值修改为“INFFILE”；
+
+　　二、如果注册表编辑器已被锁定
+　　1.用VBS文件解锁：
+
+　　打开记事本录入以下内容：
+
+　　Dim A
+
+　　Set A=CreateObject("WScript.Shell")
+
+　　A.RegWrite"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\System\DisableRegistrytools","00000000","REG_DWORD"
+
+　　A.RegWrite"HKEY_LOCAL_MACHINE\Software\CLASSES\.reg\","regfile"
+
+　　A.RegWrite"HKEY_LOCAL_MACHINE\Software\CLASSES\.inf\","inffile"
+
+　　输入完成后另存为UNLOCK.VBS，双击执行即可。
+
+　　2.用JS文件解锁：
+
+　　打开记事本录入以下内容：
+
+　　VAR:A=WScript.CreateObject("WScript.Shell")
+
+　　A.RegWrite("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\System\DisableRegistrytools","00000000","REG_DWORD");
+
+　　A.RegWrite ("HKEY_LOCAL_MACHINE\Software\CLASSES\.reg\","regfile");
+
+　　A.RegWrite ("HKEY_LOCAL_MACHINE\Software\CLASSES\.inf\","inffile");
+
+　　输入完成后另存为UNLOCK.jS，双击执行即可。　(辽宁 乔珊)
+
+　　1.在DOS下使用Regedit
+
+　　其实DOS下也可以解除这种锁定的。编辑好上面的文件后，点击“开始→程序→MS-DOS方式”，来到MS-DOS方式下，输入regedit c:\unlcok.reg，按回车。接着画面上会出现“您确定要增加c:\unlock.reg信息到注册表”的对话框，按“确定”按钮，unlock.reg的内容就输入注册表了。
+
+　　2.利用.htm文件
+
+　　打开记事本，输入下面的内容：
+
+　　＜html＞
+
+　　＜body＞
+
+　　＜script language="JavaScript"＞
+
+　　var shl=new ActiveXObject("Wscript.shell");
+
+　　shl.RegWrite("HKLM\Software\CLASSES\.reg",regfile,"REG_SZ");
+
+　　shl.RegWrite("HKLM\Software\CLASSES\.inf",inffile,"REG_SZ");
+
+　　＜/script＞
+
+　　＜/body＞
+
+　　＜/html＞
+
+　　保存为.htm文件，运行这个文件就可以解除锁定。
+
+　　3.利用超级兔子魔法设置
+
+　　运行超级兔子魔法设置，点击“安全与多用户”选项，再点击“安全”标签，将“禁止使用.reg文件”和“禁止使用.inf文件”前面的“√”取消，就可以解除这种锁定。
+
+　　4.利用scanreg文件
+
+　　在纯DOS下输入scanreg/restore命令，目的是恢复以前备份的注册表，如果你以前备份的注册表是没有锁定的，那么试试这招也很有用的。或者在纯DOS环境下输入命令scanreg，用Tab键选择“START”，进入后选择“View Backups”，即查看备份文件，根据日期选择最新的备份，然后选择RESTORE，这样注册表就可以恢复正常了。　

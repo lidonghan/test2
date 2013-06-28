@@ -1,0 +1,4 @@
+打开硬盘分区出错
+　　问：我用Windows优化大师对系统作了优化后，不知道是误操作还是怎么了，发现E盘图标变成优化大师图标，双击E盘会进入MS-DOS方式，单击右键然后选“打开”才能进入E盘，请问如何让E盘恢复正常？
+
+　　答：打开注册表编辑器，找到HKEY_CLASSES_ROOT\Drive，把右边的默认值里面的内容删除。图标的修改是：找到HKEY_CLASSES_ROOT\Drive\DefaultIcon，修改右边的图标为你需要的图标。以Windows XP为例，这个键值是：%SystemRoot%\System32\shell32.dll，8(不同的操作系统，该键值是不同的)。

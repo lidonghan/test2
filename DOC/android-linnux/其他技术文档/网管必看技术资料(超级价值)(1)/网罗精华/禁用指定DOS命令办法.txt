@@ -1,0 +1,13 @@
+禁用指定DOS命令办法
+
+　　这种方法的基本原理是将危险的DOS命令加以限制，防止非法使用这些命令对硬盘数据进行破坏。具体方法如下：
+
+　　用“记事本”打开C盘根目录下的Autoexec文件，并在其中添加如下语句：
+
+　　C:\>DOSKEY FORMAT=Bad command or filename!
+
+　　C:\>DOSKEY del=Bad command or filename!
+
+　　C:\>DOSKEY deltree=Bad command or filename!
+
+　　然后存盘退出即可。这样再调用FORMAT、DEL、DELTREE等命令时，就会显示Bad command or filename而拒绝操作。如果在某种特殊情况下，你自己需要格式化硬盘，那该怎么办呢？你可以输入命令：C:\>DOSKEY FORMAT= (回车)，这样你就可以自由地对硬盘进行操作了。

@@ -1,0 +1,94 @@
+开机BIOS语言
+
+开机自检时出现问题后会出现各种各样的英文短句，短句中包含了非常重要的信息，读懂这些信息可以自己解决一些小问题，可是这些英文难倒了一部分朋友，下面是一些常见的BIOS短句的解释，大家可以参考一下。 
+
+
+1.CMOS battery failed 
+
+中文：CMOS电池失效。 
+
+解释：这说明CMOS电池已经快没电了，只要更换新的电池即可。 
+
+
+2.CMOS check sum error－Defaults loaded 
+
+中文：CMOS 执行全部检查时发现错误，要载入系统预设值。 
+
+解释：一般来说出现这句话都是说电池快没电了，可以先换个电池试试，如果问题还是没有解决，那么说明CMOS RAM可能有问题，如果没过一年就到经销商处换一块主板，过了一年就让经销商送回生产厂家修一下吧！ 
+
+
+3.Press ESC to skip memory test 
+
+中文：正在进行内存检查，可按ESC键跳过。 
+
+解释：这是因为在CMOS内没有设定跳过存储器的第二、三、四次测试，开机就会执行四次内存测试，当然你也可以按 ESC 键结束内存检查，不过每次都要这样太麻烦了，你可以进入COMS设置后选择BIOS FEATURS SETUP，将其中的Quick Power On Self Test设为Enabled，储存后重新启动即可。 
+
+
+4.Keyboard error or no keyboard present 
+
+中文：键盘错误或者未接键盘。 
+
+解释：检查一下键盘的连线是否松动或者损坏。 
+
+
+5.Hard disk install failure 
+
+中文：硬盘安装失败。 
+
+解释：这是因为硬盘的电源线或数据线可能未接好或者硬盘跳线设置不当。你可以检查一下硬盘的各根连线是否插好，看看同一根数据线上的两个硬盘的跳线的设置是否一样，如果一样，只要将两个硬盘的跳线设置的不一样即可（一个设为Master，另一个设为Slave）。 
+
+
+6.Secondary slave hard fail 
+
+中文：检测从盘失败 
+
+解释：可能是CMOS设置不当，比如说没有从盘但在CMOS里设为有从盘，那么就会出现错误，这时可以进入COMS设置选择IDE HDD AUTO DETECTION进行硬盘自动侦测。也可能是硬盘的电源线、数据线可能未接好或者硬盘跳线设置不当，解决方法参照第5条。 
+
+
+7.Floppy Disk(s) fail 或 Floppy Disk(s) fail(80) 或Floppy Disk(s) fail(40) 
+
+中文：无法驱动软盘驱动器。 
+
+解释：系统提示找不到软驱，看看软驱的电源线和数据线有没有松动或者是接错，或者是把软驱放到另一台机子上试一试，如果这些都不行，那么只好再买一个了，好在软驱还不贵。 
+
+
+8.Hard disk(s) diagnosis fail 
+
+中文：执行硬盘诊断时发生错误。 
+
+解释：出现这个问题一般就是说硬盘本身出现故障了，你可以把硬盘放到另一台机子上试一试，如果问题还是没有解决，只能去修一下了。 
+
+
+9.Memory test fail 
+
+中文：内存检测失败。 
+
+解释：重新插拔一下内存条，看看是否能解决，出现这种问题一般是因为内存条互相不兼容,去换一条吧！ 
+
+
+10.Override enable－Defaults loaded 
+
+中文：当前CMOS设定无法启动系统，载入BIOS中的预设值以便启动系统。 
+
+解释：一般是在COMS内的设定出现错误，只要进入COMS设置选择LOAD SETUP DEFAULTS载入系统原来的设定值然后重新启动即可。 
+
+
+11.Press TAB to show POST screen 
+
+中文：按TAB键可以切换屏幕显示。 
+
+解释：有的OEM厂商会以自己设计的显示画面来取代BIOS预设的开机显示画面，我们可以按TAB键来在BIOS预设的开机画面与厂商的自定义画面之间进行切换。 
+
+
+12.Resuming from disk，Press TAB to show POST screen 
+
+中文：从硬盘恢复开机，按TAB显示开机自检画面）。 
+
+解释：这是因为有的主板的BIOS提供了Suspend to disk(将硬盘挂起)的功能，如果我们用Suspend to disk的方式来关机，那么我们在下次开机时就会显示此提示消息。 
+
+
+13.Hareware Monitor found an error，enter POWER MANAGEMENT SETUP for details，Press F1 to continue，DEL to enter SETUP 
+
+中文：监视功能发现错误，进入POWER MANAGEMENT SETUP察看详细资料，按F1键继续开机程序，按DEL键进入COMS设置。 
+
+解释：有的主板具备硬件的监视功能，可以设定主板与CPU的温度监视、电压调整器的电压输出准位监视和对各个风扇转速的监视，当上述监视功能在开机时发觉有异常情况，那么便会出现上述这段话，这时可以进入COMS设置选择POWER MANAGEMENT SETUP，在右面的**Fan Monitor**、**Thermal Monitor**和**Voltage Monitor**察看是哪部分发出了异常，然后再加以解决。

@@ -1,0 +1,52 @@
+隐藏控制面板中的选项   
+ 
+　　控制面板本身有一个配置文件──control.ini，通过改动此文件可达到这一目的。此文件在C盘Windows目录下，用写字板就可以打开它。
+
+　　具体为：在control.ini中增加[don'tload]字段，在其后跟上*.cpl=no(*表示相对应的选项)，即表示该选项不在控制面板中显示。
+
+　　[don'tload]
+
+　　joystick.cpl=no 表示隐藏“游戏控制器”
+
+　　midimap.drv=no 表示隐藏“区域设置”
+
+　　access.cpl=no 表示隐藏“辅助选项”
+
+　　appwiz.cpl=no 表示隐藏“添加/删除程序”
+
+　　desk.cpl=no 表示隐藏“显示”
+
+　　inetcpl.cpl=no 表示隐藏“Internet”和“用户”
+
+　　intl.cpl=no 表示隐藏“区域设置”
+
+　　joy.cpl=no 表示隐藏“游戏控制”
+
+　　main.cpl=no 表示隐藏“打印机、键盘、鼠标、输入法、字体”
+
+　　mmsys.cpl=no 表示隐藏“多媒体、声音”
+
+　　modem.cpl=no 表示隐藏“调制解调器”
+
+　　netcpl.cpl=no 表示隐藏“网络”
+
+　　odbccp32.cpl=no 表示隐藏“32位ODBC”
+
+　　password.cpl=no 表示隐藏“密码”
+
+　　powerefg.cpl=no 表示隐藏“电源管理”
+
+　　sticpl.cpl=no 表示隐藏“扫描仪与数字相机”
+
+　　sysdm.cpl=no 表示隐藏“系统”和“添加新硬件”
+
+　　telephon.cpl=no 表示隐藏“电话”
+
+　　themes.cpl=no 表示隐藏“桌面主题”
+
+　　timedate.cpl=no 表示隐藏“日期/时间”
+
+　　tweakui.cpl=no 表示隐藏“TweakUI”
+
+　　这样控制面板中所有选项都被隐藏。如不想隐藏，请取消相对应的选项。
+ 

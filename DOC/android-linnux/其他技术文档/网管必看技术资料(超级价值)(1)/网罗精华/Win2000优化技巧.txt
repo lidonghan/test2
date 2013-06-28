@@ -1,0 +1,195 @@
+Win2000设置技巧
+
+许多设置涉及到注册表，请小心操作，注意备份！ 
+
+    对象为Windows 2000 Professional。 
+
+    内存性能优化： 
+
+    HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Memory Management 中设置 ClearPageFileAtShutdown=1。 
+
+    若内存≥128M，进行如下优化： 
+
+    DisablePagingExecutive键值设为1：系统正运行的文件被强制保留在内存中而非移入虚拟内存。 
+
+    LargeSystemCache键值设为1：Windows 2000使用系统缓存（同Windows 9x中Vcache），使磁盘输入/输出性能有巨大提高。        
+
+    系统性能优化： 
+
+    1. CPU二级缓存 
+
+    L2：CPU二级缓存，是CPU的一个组成部分。然而，Windows2000不对二级缓存作出检测 ，需手动设定。 
+
+    HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\MemoryManagement\SecondLevelDataCache，值（以KB为单位）调整为所用CPU的二级缓存实际大小。 
+
+    注：可选用十六进制或十进制，填入大小值应该选十进制。 
+
+    2. 修改磁盘缓存 
+
+    Windows2000默认的I/O页面文件比较保守。对于不同的内存，采用不同的磁盘缓存是较好的做法。 
+
+    HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\IoPageLockLimit中，根据内存修改其十六进制值： 
+
+    64M→1000； 
+
+    128M→4000； 
+
+    256M→10000； 
+
+    512M或更大→40000。 
+
+    3. IRQ中断请求 
+
+    计算机的每一个主要部件都设IRQ中断号。通过修改每个IRQ请求的优先次序实现优化。这里的优化对象是系统/CMOS实时钟，通过主板来提升性能。 
+
+    1）确定需要获得更高的性能的组件。 
+
+    2）找到组件正在使用的IRQ中断号。系统属性→硬件→设备管理器→右击待查组件→属性→资源，可以看到设备正在使用的IRQ中断号。记录中断号。 
+
+    3）HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\PriorityControl中新建DWORD双字节值IRQ#Priority（#是具体中断号），值设为1。 
+
+    4）重新启动。 
+
+    建议优化系统CMOS实时钟（IRQ8），改善整块主板的性能。如要撤消优化设置，只要删除设置的注册表键值。 
+
+    4. 不加载DLL文件 
+
+    浏览器在使用之后往往会有部分DLL文件在内存中驻留一段时间，部分内存会被无用的DLL文件占用。 
+
+    HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer新建字符值：AlwaysUnloadDLL，值设为1。 
+
+    如要去除这项优化，将该键值设为0（或删除键值）。 
+
+    注意：该项优化在Windows重新启动后生效。 
+
+    5. 删除多余的DLL文件 
+
+    Windows2000的System和System32目录下有大量dll文件被系统或应用软件共享。经常安装卸载软件会增加dll垃圾文件，占用硬盘空间，降低系统运行速度。 
+
+    HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\SharedDLLs中，存放有关软件共享的dll路径信息，每个dll文件的项值表明它已被几个应用软件共享。如果该项值为0，则说明不被任何软件共享，可以删除，然后再删除对应的dll文件。 
+
+    6. 精简注册表（慎用！） 
+
+    精简注册表的方法是重建注册表： 
+
+    1）Windows2000下用Regedit导出整个注册表（注意：要确保导出全部注册表而非一个分支），将其存为c:\x.reg。 
+
+    2）用DOS 7.0重新启动，载入磁盘高速缓存程序Smartdrv.exe以加快处理速度。 
+
+    3）运行DOS版的REGEDIT：C:\Windows\regedit/c x.reg（参数/C表示从后面指定文件中重新生成整个注册表），重建的注册表文件比减小25-30%左右，达到精简目的。 
+
+    7. 等待时间优化 
+
+    HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control中： 
+
+    WaitToKillServiceTimeout设为：1000或更小。 
+
+    HKEY_CURRENT_USER\Control Panel\Desktop和HKEY_USERS\Control Panel\Desktop中： 
+
+    （1）WaitToKillAppTimeout改为1000，即关闭程序时仅等待1秒； 
+
+    （2）HungAppTimeout值改为：200，表示程序出错时等待0.5秒； 
+
+    3）AutoEndTasks值改为1，表示自动关闭停止相应的程序。 
+
+    8. 快速定位鼠标 
+
+    Windows 2000允许用户对鼠标的采样速率进行设定，使鼠标能更精确地移动和定位。 
+
+    鼠标的采样速率设置为100Hz，输入缓冲区长度设置为300Hz。如果在设置后系统变得不稳定，改变采样速率，设置成80Hz或以下即可。 
+
+    9. 快速显示菜单 
+
+    Windows 2000的默认菜单显示是“淡入淡出”的效果，这种效果下，修改菜单的显示速度并不明显。 
+
+    将“动画显示菜单和工具提示”效果”改为“滚动效果”。 
+
+    HKEY_CURRENT_USER\ControlPanel\Desktop中MenuShowDelay项，这一项的取值范围是0～100000（单位为毫秒），将默认的值改为0或者是400。 
+
+    10. 删除多余的键盘布局、输入法和区域设置 
+
+    HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Keyboard Layouts中，对应“控制面板”中的“键盘布局/输入法”，可直接删除未用语言的键盘布局和未用的输入法子项； 
+
+    HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Nls\Locale中，是“区域设置”，保留值不为空的项值，其它的全部删除。 
+
+    11. 删除系统不用的字体和HELP文档（慎用！） 
+
+    把\WINNT\Fonts整个目录打包压缩成一个文件保存。删除所有不用的字体，只保留Arial、Marlett、Micosoft Scans Serif Regular 、MingLiU & PmingLiU、Modern、MS Outlook、MS Serif 8,10,12、Script、SimSun & NsimSun、Tahoma、Times New Roman、宋体、仿宋、楷体、黑体几个字体。需要其它字体时解压对应的字体到Fonts目录中。 
+
+    12. 在“运行”中添加“在单独的内存空间中运行”的选项 
+
+    HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer中，新建DWORD型MemCheckBoxInRunDlg，值设为1。 
+
+    注：默认情况下，所有16位程序都在单一共享的 VDM （虚拟DOS机器）进程中作为线程运行。这种情况下，这些程序共享分配给 VDM 进程的内存空间，因此不能同时运行。所作设置就是允许用户在专用的(不是共享的)VDM进程中运行16位程序。复选框只在用户在输入16位程序时才被启用。 
+
+    启动优化： 
+
+    1.取消系统检测串口 
+
+    打开 Boot.ini 文件，如下修改： 
+
+    [operating systems] 
+
+    multi(0)disk(0)rdisk(0)partition(2)\WINDOWS="Microsoft Windows 2000 Professional" /fastdetect/NoSerialMice 
+
+    启动时不检测行串口，缩短启动时间。 
+
+    2. 快速启动 
+
+    multi(0)disk(0)rdisk(0)partition(2)\WINNT="Microsoft Windows 2000 Professional" /fastdetect 
+
+    改为：multi(0)disk(0)rdisk(0)partition(2)\WINNT="Microsoft Windows 2000 Professional" /nodetect 
+
+    HKey_Local_Machine\System\ControlSet001\Control中，SystemStartOptions键值改为nodetect 
+
+    3.关闭无用服务 
+
+    运行→Services.msc→Windows2000服务的详细列表。 
+
+    Windows 2000服务设置 
+
+    4. 加快启动和减少故障恢复时间 
+
+    减少Windows2000系统启动时显示操作系统列表的时间。如果不是网络系统管理员，可以去掉“将事件写入系统日志”和“发出管理警报”两个选项，并将“写入调试信息”设置为“无”。 
+
+    5. 删掉不需要的组件 
+
+    （1）去除文件夹选项的文件隐藏、只读等属性； 
+
+    （2）\WINNT\inf文件夹，用记事本打开sysoc.ini文件，替换“,hide”为空，保存退出。控制面板→添加/删除程序→添加/删除Windows组件，根据需要修改。 
+
+    6. 屏蔽CD自动播放 
+
+    启动时，打开CD自动播放功能会延缓启动速度。运行→gpedit.msc→管理模板，设置是否自动播放CD。 
+
+    7. 快速登录计算机系统 
+
+    系统属性→网络ID→网络标识→根据“网络标识向导”操作。 
+
+    设置时注意：选择“本机用于家庭，不是商业网络的一部分”，以及“Windows始终假设下列用户已登录到本机上”。 
+
+    HKEY_LOCAL_MACHINE\Software\Microsoft\WinNT\CurrentVersion\Winlogon中， 
+
+    （1）AutoAdminLogon值改为“1” 
+
+    （2）DefaultDomainName值改为所要登录的域名或本机计算机名 
+
+    （3）DefaultUserName值改为自动登录的用户名 
+
+    （4）DefaultPassword值改为密码。（注意：这几个都是字符串值。） 
+
+    如果想临时取消自动登录或者需要以其他用户名登录，在启动时按住Shift键。 
+
+    8. 加快Explorer启动速度 
+
+    HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\Current Version\Explorer\RemoteComputer\NameSpace中： 
+
+    删除{D6277990-4C6A-11CF-8D87-00AA0060F5BF} (计划任务) 
+
+    9. Windows 2000启动盘制作： 
+
+    （1）Windows 2000 启动盘：d:\bootdisk\makeboot a: 
+
+    （2）Windows 2000 引导盘：ntldr，ntdlect.com，boot.ini，IO.sys 
+
+    （3）Windows 2000 紧急修复磁盘（ERD）：ntbackup.exe

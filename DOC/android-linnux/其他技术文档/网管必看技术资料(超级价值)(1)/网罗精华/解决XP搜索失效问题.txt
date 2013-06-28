@@ -1,0 +1,5 @@
+Windows XP搜索功能失效
+　　问：我的电脑安装的是Windows XP系统，最近它的文件搜索功能不能用了，打开搜索界面时，输入文件或文件夹名的文本框是灰色的，无法输入。请问该怎么解决？
+
+　　答：打开注册表编辑器，定位到[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\CabinetState]，新建字符串值“Use Search Asst”，设值为“no”。查看C:\Windows\System32\下的Shell32.dll文件语言版本，中文(0804)、英文(0600)等，将C:\Windows\Srchasst\mui\下原为0804或0409等的目录名改为与Shell32.dll语言版本相同的数字。现在打开搜索助理，是不是可以用了？
+

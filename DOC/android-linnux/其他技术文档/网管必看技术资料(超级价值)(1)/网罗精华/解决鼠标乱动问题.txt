@@ -1,0 +1,25 @@
+解决鼠标乱动问题
+
+   现象：鼠标有时胡乱乱动，不听指挥。我怀疑是有病毒或木马之类，所以用金山毒霸、iparmor5.33、the cleaner查杀过，均未发现过问题。但我在“系统信息→正在运行的任务”下发现几个没有路径、版本和任何信息的任务。不知道和这有没有关，请问这三个任务是什么东西，能否删除，怎样删除？
+
+这是一种NIMDA病毒。解决方案如下：
+
+(1) 检查临时文件夹是否存在MEPXXXX. tmp 和MEPXXXX.tmp.exe文件，XXXX是由字幕和数字随机组成的字符串。
+
+(2) 检查C:\，D:\，E:\是否存在httpodbc.dll文件。
+
+(3) 是否带宽被严重占用。
+
+(4) 在Windows 9x/ME系统中，\Windows\ system目录下是否存在LOAD.exe文件。
+
+(5) 在Windows NT/2K系统中，\Windows\ System目录下是否存在CSRSS.exe隐藏文件。
+
+建议你下载Symantec和Trendmicro的查杀Nimda_E病毒工具进行检测和清除。http://support.marsec.net/focus/nimda_e/FxNimdaE.com
+
+http://support.marsec.net/focus/nimda/trend_nimda.zip
+
+查杀步骤：
+
+（1）在http://support.marsec.net/focus/nimda_e/FxNimdaE.com下载FxNimdaE.com，存放在系统里。
+
+（2）停掉系统所有正在运行的程序。如果你的系统是Windows Me，你必须停掉Windows Me的系统恢复功能，因为病毒有可能被自动保存在备份目录里。双击运行FxNimdaE. com，运行此程序需要你以系统管理员帐号登录，在操作前停掉IIS服务或者拔离网线，以免在清除过程中再次感染。然后点击Start键运行程序直到报告说系统已经清除掉病毒。

@@ -1,0 +1,1 @@
+hosts文件是Windows系统中一个负责IP地址与域名快递解析的文件，以ASCLL格式保存。计算机在键入域名（比如www.baidu.com）的时候，首先会去看看hosts文件汇总有没有关于此域名IP地址的记录。如果有，就直接登陆该网站；如果没有再查询DNS服务器。hosts在Windows98中是hosts.sam文件，在Windows2000/XP中则就是hosts文件，没有拓展名。

@@ -1,0 +1,4 @@
+隐藏桌面所有图标   
+
+
+　　在开始－运行输入regedit进入注册表，找到子键“HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer”，新建“DWORD”值 “NoDesktop”，其值为“1”。重新启动系统后，会发现任务栏的快速启动图标消失了。

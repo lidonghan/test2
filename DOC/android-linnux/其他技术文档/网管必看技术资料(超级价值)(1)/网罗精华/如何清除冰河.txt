@@ -1,0 +1,10 @@
+如何清除冰河
+
+
+冰河可以说是最有名的木马了。标准版冰河的服务器端程序为G-server.exe，客户端程序为G-client.exe，默认连接端口为7626。
+
+一旦运行G-server，那么该程序就会在C:\Windows\system目录下生成Kernel32.exe和sysexplr.exe，并删除自身。Kernel32.exe在系统启动时自动加载运行，sysexplr.exe和TXT文件关联。即使你删除了Kernel32.exe，但只要你打开TXT文件，sysexplr.exe就会被激活，它将再次生成Kernel32.exe，于是冰河又回来了！这就是冰河屡删不止的原因。
+
+要清除冰河，首先要删除C:\Windows\system下的Kernel32.exe和Sysexplr.exe文件；冰河会在注册表的HKEY_LOCAL_MACHINE\ software\ microsoft\ Windows\CurrentVersion\Run分支下扎根，键值为C:\Windows\system\Kernel32. exe，删除它。在注册表的HKEY_LOCAL_ MACHINE\ software\microsoft\Windows\Current Version\Runservices分支下，还有键值为C:\Windows\system\ Kernel32.exe的，也要删除。
+
+最后，恢复注册表中的TXT文件关联功能,只要将注册表的HKEY_CLASSES_ROOT\txtfile\ shell\open\command下的默认值，由中木马后的C:\Windows\system\ Sysexplr.exe %1改为正常情况下的C:\Windows\ notepad.exe %1即可。

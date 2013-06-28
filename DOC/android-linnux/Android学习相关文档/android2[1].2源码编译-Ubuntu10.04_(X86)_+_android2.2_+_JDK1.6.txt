@@ -1,0 +1,183 @@
+android2.2源码编译
+环境：－－Ubuntu10.04 (X86) + android2.2 + JDK1.6
+注意：官方声明，32位系统下JDK必须用1.5---这是因为编译android api docs 需要1.5。要用JDK1.6必须用64位系统---为什么是64目前不得而知。要是想一次成功，最好还是按照官方说的用JDK1.5(当然你用64位linux就更方便了)，这样的话基本没什么大问题。
+1）安装必要的软件环境
+1
+$ sudo apt-get install git-core gnupg sun-java5-jdk flex bison gperf libsdl-dev libesd0-dev libwxgtk2.6-dev build-essential zip curl libncurses5-dev zlib1g-dev
+官方推荐的就是上面这些，如果在编译过程中发现某些命令找不到，就apt-get它。可能需要的包还有：
+1
+1 $ sudo apt-get install make2 $ sudo apt-get install gcc3 $ sudo apt-get install g++4 $ sudo apt-get install libc6-dev5 $ sudo apt-get install patch6 $ sudo apt-get install texinfo7 $ sudo apt-get install zlib1g-dev8 $ sudo apt-get install valgrind9 $ sudo apt-get install python2.5（或者更高版本）
+注意：
+1.官方文档说如果用sun-java6-jdk会出问题，得要用sun-java5- jdk。
+2.经测试发现，如果仅仅make（make不包括make sdk），用sun-java6-jdk是没有问题的。而make sdk，就会有问题，严格来说是在make doc出问题，它需要的javadoc版本为1.5。因此，我们安装完sun-java6-jdk后最好再安装sun-java5-jdk，或者只安装sun-java5-jdk。这里sun-java6- jdk和sun-java5-jdk都安装，并只修改javadoc.1.gz和javadoc。因为只有这两个是make sdk用到的。这样的话，除了javadoc工具是用1.5版本，其它均用1.6版本：1 $ sudo apt-get install sun-java6-jdk
+修改javadoc的link
+1 $ cd /etc/alternatives
+2 $ sudo rm javadoc.1.gz
+3 $ sudo ln -s /usr/lib/jvm/java-1.5.0-sun/man/man1/javadoc.1.gz javadoc.1.gz
+4 $ sudo rm javadoc
+5 $ sudo ln -s /usr/lib/jvm/java-1.5.0-sun/bin/javadoc javadoc
+当碰到JDK1.6在32位系统下的检查问题时，可以通过一下方法解决
+修改下列文件：
+1 external/clearsilver/cgi/Android.mk,
+2 
+3 external/clearsilver/java-jni/Android.mk,
+4 
+5 external/clearsilver/util/Android.mk,
+6 
+7 external/clearsilver/cs/Android.mk四个文件。
+把下面脚本中的ifneq改为ifeq可暂时规避问题
+1 # This forces a 64-bit build for Java6
+2 ifneq ($(filter 1.6%,$(java_version)),)
+3 LOCAL_CFLAGS += -m64
+4 LOCAL_LDFLAGS += -m64
+5 endif
+2）设置环境变量1 $ gvim ~/.bashrc
+在.bashrc中新增或整合PATH变量，如下：
+01 #java 程序开发/运行的一些环境变量
+02 JAVA_HOME=/usr/lib/jvm/java-6-sun
+03 JRE_HOME=${JAVA_HOME}/jre
+04 export ANDROID_JAVA_HOME=$JAVA_HOME
+05 export CLASSPATH=.:${JAVA_HOME}/lib:$JRE_HOME/lib:$CLASSPATH
+06 export JAVA_PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin
+07 export JAVA_HOME;
+08 export JRE_HOME;
+09 export CLASSPATH;
+10 HOME_BIN=~/bin/
+11 export PATH=${PATH}:${JAVA_PATH}:${HOME_BIN};
+保存后，同步更新：
+ 1 source ~/.bashrc
+3）安装repo（用来更新android源码）
+创建~/bin目录，用来存放repo程序，如下：
+1 $ cd ~
+2 $ mkdir bin
+并加到环境变量PATH中，在第2步中已经加入
+下载repo脚本并使其可执行：
+1 $ curl http://android.git.kernel.org/repo >~/bin/repo
+2 $ chmod a+x ~/bin/repo
+4）初始化repo
+repo是android对git的一个封装，简化了一些git的操作。
+创建工程目录：
+1 $ mkdir android
+2 $ cd android
+repo初始化
+ 1 $ repo init -u git://android.git.kernel.org/platform/manifest.git
+在此过程中需要输入名字和email地址。初始化成功后，会显示：
+repo initialized in /android
+在~/android下会有一个.repo的隐藏目录。
+5）同步源代码1 $ repo sync
+这一步要很久很久
+6）编译android源码,并得到~/android/out目录
+1 $ cd ~/andoird
+2 $ make
+这一过程很久,我是看了部一个多小时的电影之后编译完成的，具体看电脑配置了~
+7）在模拟器上运行编译好的android
+编译好android之后，
+emulator在~/android/out/host/linux-x86/bin 下，
+ramdisk.img，system.img和userdata.img则在~/android/out/target/product /generic下1 $ cd ~/android/out/host/linux-x86/bin
+增加环境变量
+ 1 $ gvim ~/.bashrc
+在.bashrc中新增环境变量，如下
+1 #java 程序开发/运行的一些环境变量
+2 export ANDROID_PRODUCT_OUT=~/android/out/target/product/generic
+3 ANDROID_PRODUCT_OUT_BIN=~/android/out/host/linux-x86/bin
+4 export PATH=${PATH}:${ANDROID_PRODUCT_OUT_BIN}:${ANDROID_PRODUCT_OUT};
+最后，同步这些变化：
+1 $ source ~/.bashrc
+2 $ cd ~/android/out/target/product/generic
+3 $ emulator -system system.img -data userdata.img -ramdisk ramdisk.img
+最后进入android桌面，就说明成功了。
+8）编译模块
+android中的一个应用程序可以单独编译，编译后要重新生成system.img
+在源码目录下执行1 $ . build/envsetup.sh （.后面有空格）
+就多出一些命令：
+- croot:   Changes directory to the top of the tree.
+- m:       Makes from the top of the tree.
+- mm:      Builds all of the modules in the current directory.
+- mmm:     Builds all of the modules in the supplied directories.
+- cgrep:   Greps on all local C/C++ files.
+- jgrep:   Greps on all local Java files.
+- resgrep: Greps on all local res/*.xml files.
+- godir:   Go to the directory containing a file.
+可以加—help查看用法
+我们可以使用mmm来编译指定目录的模块，如编译联系人：1 $ mmm packages/apps/Contacts/
+编完之后生成两个文件：
+out/target/product/generic/data/app/ContactsTests.apk
+out/target/product/generic/system/app/Contacts.apk
+可以使用
+ 1 $ make snod
+重新生成system.img，再运行模拟器
+9）编译SDK
+直接执行make是不包括make sdk的。make sdk用来生成SDK，这样，我们就可以用与源码同步的SDK来开发android了。
+a）(这一步不一定需要，看自己的配置)修改/frameworks/base/include/utils/Asset.h
+‘UNCOMPRESS_DATA_MAX = 1 * 1024 * 1024’ 改为 ‘UNCOMPRESS_DATA_MAX = 2 * 1024 * 1024’
+原因是eclipse编译工程需要大于1.3M的buffer；
+b）编译ADT。
+本人没有进行这步；
+c）执行make sdk。
+注意，这里需要的javadoc版本为1.5，所以你需要在步骤1中同时安装sun-java5-jdk1 $ make sdk
+编译很慢。编译后生成的SDK存放在out/host/linux-x86/sdk/，此目录下有android-sdk_eng.xxx_linux- x86.zip和android-sdk_eng.xxx_linux-x86目录。android-sdk_eng.xxx_linux-x86就是 SDK目录
+实际上，当用mmm命令编译模块时，一样会把SDK的输出文件清除，因此，最好把android-sdk_eng.xxx_linux-x86移出来
+此后的应用开发，就在该SDK上进行，所以把7）对于~/.bashrc的修改注释掉，增加如下一行：
+ 1 export PATH=${PATH}:~/android/out/host/linux-x86/sdk/android-sdk_eng.xxx_linux-x86/tools
+注意要把xxx换成真实的路径；
+d）关于环境变量、android工具的选择
+目前的android工具有：
+A、我们从网上下载的SDK，如果你下载过的话（ tools下有许多android工具，lib/images下有img映像）
+B、我们用make sdk编译出来的SDK（ tools下也有许多android工具，lib/images下有img映像）
+C、我们用make编译出来的out目录（ tools下也有许多android工具，lib/images下有img映像）
+那么我们应该用那些工具和img呢？
+首先，我们一般不会用A选项的工具和img，因为一般来说它比较旧，也源码不同步。其次，也不会用C选项的工具和img，因为这些工具和img没有经过 SDK的归类处理，会有工具和配置找不到的情况；事实上，make sdk产生的很多工具和img，在make编译出来out目录的时候，已经编译产生了，make sdk只是做了copy而已。
+e）安装、配置ADT
+略过；
+f）创建Android Virtual Device
+编译出来的SDK是没有AVD（Android Virtual Device）的，我们可以通过android工具查看：1 $ android list
+创建AVD：1 $ android create avd -t 1 -n myavd
+可以android –help来查看上面命令选项的用法。创建中有一些选项，默认就行了
+再执行android list，可以看到AVD存放的位置
+以后每次运行emulator都要加-avd myavd或@myavd选项：1 $ emulator -avd myavd
+10）编译linux内核映像
+a）准备交叉编译工具链
+android代码树中有一个prebuilt项目，包含了我们编译内核所需的交叉编译工具。
+b）设定环境变量1 $ gvim ~/.bashrc
+增加如下两行：
+1 export PATH=$PATH:~/android/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin
+2 export ARCH=arm
+保存后，同步变化：1 $ source ~/.bashrc
+c）获得合适的内核源代码1 $ cd ~/android
+获得内核源代码仓库
+1 $ git clone git://android.git.kernel.org/kernel/common.git kernel
+2 $ cd kernel
+3 $ git branch
+显示
+* android-2.6.27
+说明你现在在android-2.6.27这个分支上，也是kernel/common.git的默认主分支。
+显示所有head分支：1 $ git branch -a
+显示
+* android-2.6.27
+remotes/origin/HEAD -> origin/android-2.6.27
+remotes/origin/android-2.6.25
+remotes/origin/android-2.6.27
+remotes/origin/android-2.6.29
+remotes/origin/android-goldfish-2.6.27
+remotes/origin/android-goldfish-2.6.29
+我们选取最新的android-goldfish-2.6.29，其中goldfish是android的模拟器模拟的CPU。
+1 $ git checkout -b android-goldfish-2.6.29 origin/android-goldfish-2.6.29
+2 $ git branch
+显示
+android-2.6.27
+* android-goldfish-2.6.29
+我们已经工作在android-goldfish-2.6.29分支上了。
+d）设定交叉编译参数
+打开kernel目录下的Makefile文件，把CROSS_COMPILE指向刚才下载的prebuilt中的arm-eabi编译器
+CROSS_COMPILE ?= arm-eabi-
+把
+1 LDFLAGS_BUILD_ID = $(patsubst -Wl$(comma)%,%,\
+2 $(call ld-option, -Wl$(comma)–build-id,))
+这一行注释掉，并且添加一个空的LDFLAGS_BUILD_ID定义，如下:1 LDFLAGS_BUILD_ID =
+e）编译内核映像
+1 $ cd ~/android/kernel
+2 $ make goldfish_defconfig
+3 $ make
+f）测试生成的内核映像1 $ emulator -avd myavd -kernel ~/android/kernel/arch/arm/boot/zImage
+==========================================================
+最后：在编译的过程中有可能出现各种错误，可以google找一下，一般的错误都能找到，预祝大家成功，OK收工~

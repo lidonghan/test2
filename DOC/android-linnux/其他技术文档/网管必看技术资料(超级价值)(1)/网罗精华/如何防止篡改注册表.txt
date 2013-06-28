@@ -1,0 +1,17 @@
+如何防止恶意网页篡改注册表
+
+　　1.升级IE为6.0版本并利用Windows Update下载微软补丁Microsoft Windows Script 5.6；
+
+　　2.在“Internet选项”→“安全”→“自定义级别”中将ActiveX插件和控件、Java脚本等全部禁止，不过这样做在以后的网页浏览过程中可能会造成一些正常使用ActiveX的网站无法浏览；
+
+　　3.通过修改注册表来禁止恶意网页使用注册表编辑器Regedit，具体做法是：打开注册表到HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\System，在Policies下面新建一个主键，取名System，然后在右边空白处新建一个DWORD串值，名字取为DisableRegistryTools，把它的值修改为1，这样可有效防止恶意网页篡改注册表；
+
+　　4.对于Windows98用户，可把C:\WINDOWS\JAVA\Packages\CVLV1NBB.ZIP中的“ActiveXComponent.class”删掉；
+
+　　5.对于WindowsMe用户，可把C:\WINDOWS\JAVA\Packages\5NZVFPF1.ZIP中的“ActiveXComponent.class”删掉；
+
+　　6.对Windows2000用户，可把Windows2000服务里面的远程注册表操作服务“Remote Registry Service”禁用，以防止恶意网页篡改注册表。具体方法为：“管理工具”→“服务”→“Remote Registry Service”(允许远程注册表操作)”，将这一项禁用；
+
+　　7.利用第三方软件(比如超级兔子IE保护器、优化大师等)设置来防止；
+
+　　8.开启杀毒软件(瑞星、KV杀毒王等)的实时“网页监控”功能。
