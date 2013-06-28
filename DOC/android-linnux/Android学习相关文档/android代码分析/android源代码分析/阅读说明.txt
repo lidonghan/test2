@@ -1,0 +1,11 @@
+android-代码分析.mod 电子书
+android系统源代码分析
+
+
+用 gpLab打开。
+
+gpLab软件下载地址： 
+
+www.gpLab.org
+
+要求gpLab版本： 2.2.1-168以上
